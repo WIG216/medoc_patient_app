@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>327518543252-0eca3piq7p6ap5ouk1t81nucdfbmlggt.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.327518543252-0eca3piq7p6ap5ouk1t81nucdfbmlggt</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDAYk3Ov0pSI3rOE8VbXYL_gHxWvFdvHhE</string>
+	<key>GCM_SENDER_ID</key>
+	<string>327518543252</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.medocPatientApp.RunnerTests</string>
+	<key>PROJECT_ID</key>
+	<string>medoc-477e8</string>
+	<key>STORAGE_BUCKET</key>
+	<string>medoc-477e8.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:327518543252:ios:bb143ab32f89c56e48c381</string>
+</dict>
+</plist>

@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "327518543252",
+    "project_id": "medoc-477e8",
+    "storage_bucket": "medoc-477e8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:327518543252:android:b18911d524970ad248c381",
+        "android_client_info": {
+          "package_name": "com.example.medoc_patient_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "327518543252-sb8b7bi20p9tscdfc69ol8qb7hl2la68.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhiq6lbFPqBnjh9irygR041Nw8ZM-yNnI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "327518543252-sb8b7bi20p9tscdfc69ol8qb7hl2la68.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "327518543252-8cfi0pnu7pkimvou3e62h9fc3kvra8lu.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.test1.RunnerTests"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
