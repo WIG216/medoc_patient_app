@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:medoc_patient_app/common/utils/colors.dart';
+import 'package:medoc_patient_app/common/utils/gap.dart';
+import 'package:medoc_patient_app/common/utils/text_style.dart';
 
 class NumberCard extends StatelessWidget {
   final String label;
@@ -29,22 +31,22 @@ class NumberCard extends StatelessWidget {
           children: [
             Text(
               label,
-              style: TextStyle(
-                color: Color(MyColors.grey02),
-                fontSize: 12,
-                fontWeight: FontWeight.w600,
-              ),
+              style: subtitleStyle,
+              // style: TextStyle(
+              //   color: Color(MyColors.grey02),
+              //   fontSize: 12,
+              //   fontWeight: FontWeight.w600,
+              // ),
             ),
-            SizedBox(
-              height: 10,
-            ),
+            10.height,
             Text(
               value,
-              style: TextStyle(
-                color: Color(MyColors.header01),
-                fontSize: 15,
-                fontWeight: FontWeight.w800,
-              ),
+              style: bodyStyle.copyWith(fontWeight: FontWeight.w800, fontSize: 15,),
+              // style: TextStyle(
+              //   color: Color(MyColors.header01),
+              //   fontSize: 15,
+              //   fontWeight: FontWeight.w800,
+              // ),
             ),
           ],
         ),

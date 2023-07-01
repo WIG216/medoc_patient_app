@@ -3,22 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:medoc_patient_app/app_bindings.dart';
 import 'package:medoc_patient_app/common/utils/colors.dart';
-import 'package:medoc_patient_app/features/auth/screens/registration_screen.dart';
-import 'package:medoc_patient_app/features/auth/screens/user_information_screen.dart';
-import 'package:medoc_patient_app/features/auth/screens/verification_screen.dart';
-import 'package:medoc_patient_app/features/auth/widgets/home.dart';
-import 'package:medoc_patient_app/features/main/screens/appointment.dart';
-import 'package:medoc_patient_app/features/main/screens/main.dart';
+import 'package:medoc_patient_app/config/zegocloud.dart';
 import 'package:medoc_patient_app/firebase_options.dart';
+import 'package:medoc_patient_app/messages.dart';
 import 'package:medoc_patient_app/routes.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:medoc_patient_app/test_ui.dart';
+import 'package:medoc_patient_app/zegocloud/login_page.dart';
+import 'package:zego_zimkit/zego_zimkit.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // SharedPreferences preferences = await SharedPreferences.getInstance();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  ZIMKit().init(appID: Utils.id, appSign: Utils.SignIn,);
   runApp(MyApp());
 }
 
@@ -34,9 +32,9 @@ class MyApp extends StatelessWidget {
       ),
       defaultTransition: Transition.fade,
       initialBinding: AppBindings(),
-      // home: Appointment(),
-      initialRoute: AppRoutes.home,
-      getPages: AppRoutes.routes,
+      home: LoginPage(),
+      // initialRoute: AppRoutes.home,
+      // getPages: AppRoutes.routes,
     );
   }
 }

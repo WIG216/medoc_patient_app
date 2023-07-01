@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:medoc_patient_app/common/utils/colors.dart';
+import 'package:medoc_patient_app/common/utils/text_style.dart';
 import 'package:medoc_patient_app/features/main/widgets/schedule_card.dart';
 
 class AppointmentCard extends StatelessWidget {
@@ -17,7 +18,7 @@ class AppointmentCard extends StatelessWidget {
         Container(
           width: double.infinity,
           decoration: BoxDecoration(
-            color: Color(0xFF146d7c),
+            color: primaryColor,
             borderRadius: BorderRadius.circular(10),
           ),
           child: InkWell(
@@ -45,7 +46,8 @@ class AppointmentCard extends StatelessWidget {
                           ),
                           Text(
                             'Dental Specialist',
-                            style: TextStyle(color: Color(MyColors.text01)),
+                            style: subtitleStyle,
+                            // style: TextStyle(color: Color(MyColors.text01)),
                           ),
                         ],
                       ),

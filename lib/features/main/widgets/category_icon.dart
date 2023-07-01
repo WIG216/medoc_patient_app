@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:medoc_patient_app/common/utils/colors.dart';
+import 'package:medoc_patient_app/common/utils/gap.dart';
+import 'package:medoc_patient_app/common/utils/text_style.dart';
 
 List<Map> categories = [
   {'icon': Icons.coronavirus, 'text': 'Covid 19', 'route': '/medical_post'},
@@ -60,7 +62,7 @@ class CategoryIcon extends StatelessWidget {
                   width: 50,
                   height: 50,
                   decoration: BoxDecoration(
-                    color: Color(0xFF8ab6be).withOpacity(0.2),
+                    color: lightBgColor.withOpacity(0.2),
                     borderRadius: BorderRadius.circular(50),
                   ),
                   child: Icon(
@@ -70,16 +72,10 @@ class CategoryIcon extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(
-              height: 10,
-            ),
+           10.height,
             Text(
               text,
-              style: TextStyle(
-                color: Colors.grey,
-                fontSize: 12,
-                fontWeight: FontWeight.w600,
-              ),
+              style: subtitleStyle.copyWith(fontWeight: FontWeight.bold)
             ),
           ],
         ),

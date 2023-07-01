@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:medoc_patient_app/common/utils/colors.dart';
+import 'package:medoc_patient_app/features/appointment/screens/my_appointment_screen.dart';
 import 'package:medoc_patient_app/features/auth/screens/registration_screen.dart';
 import 'package:medoc_patient_app/features/main/controllers/navigation_controller.dart';
 import 'package:medoc_patient_app/features/main/screens/appointment_screen.dart';
@@ -23,7 +25,8 @@ class _MainPageState extends State<MainPage> {
       case 0:
         return HomeScreen();
       case 1:
-        return  AppointmentScreen();
+        // return  AppointmentScreen();
+        return  MyAppointmentScreen();
       case 2:
         return  PharmarcyMainPage();
       case 3:
@@ -47,11 +50,11 @@ class _MainPageState extends State<MainPage> {
         selectedItemColor: lightPrimaryColor,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined),
+            icon: Icon(CupertinoIcons.home),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.calendar_month_outlined),
+            icon: Icon(CupertinoIcons.calendar),
             label: 'Appointment',
           ),
           BottomNavigationBarItem(

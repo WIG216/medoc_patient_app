@@ -90,7 +90,8 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
                 Text(
                   'Schedule',
                   textAlign: TextAlign.start,
-                  style: kTitleStyle.copyWith(fontSize: 18),
+                  style: mediumHeaderStyle.copyWith(fontSize: 18,),
+                  // style: kTitleStyle.copyWith(fontSize: 18),
                 ),
                 IconButton(
                   onPressed: () {},
@@ -102,9 +103,7 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
                 ),
               ],
             ),
-            SizedBox(
-              height: 20,
-            ),
+           20.height,
             Stack(
               children: [
                 Container(
@@ -139,11 +138,13 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
                             child: Center(
                               child: Text(
                                 filterStatus.name,
-                                style:
-                                    kFilterStyle.copyWith(color: Colors.grey),
-                              ),
+                                style: subtitleStyle.copyWith(fontSize: 14, fontWeight: FontWeight.bold,),
+                              //   style:
+                              //       kFilterStyle.copyWith(color: Colors.grey),
+                              // ),
                             ),
                           ),
+                        ),
                         ),
                     ],
                   ),
@@ -161,16 +162,14 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
                     child: Center(
                       child: Text(
                         status.name,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: smallHeaderStyle.copyWith(color: whiteColor, fontSize: 14)
                       ),
                     ),
                   ),
                 )
               ],
             ),
+            
             Expanded(
               child: ListView.builder(
                 itemCount: filteredSchedules.length,
@@ -200,21 +199,23 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
                                 children: [
                                   Text(
                                     _schedule['doctorName'],
-                                    style: TextStyle(
-                                      color: Color(MyColors.header01),
-                                      fontWeight: FontWeight.w700,
-                                    ),
+                                    style: mediumHeaderStyle,
+                                    // style: TextStyle(
+                                    //   color: Color(MyColors.header01),
+                                    //   fontWeight: FontWeight.w700,
+                                    // ),
                                   ),
                                   SizedBox(
                                     height: 5,
                                   ),
                                   Text(
                                     _schedule['doctorTitle'],
-                                    style: TextStyle(
-                                      color: Color(MyColors.grey02),
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w600,
-                                    ),
+                                    style: subtitleStyle.copyWith(fontWeight: FontWeight.w600,),
+                                    // style: TextStyle(
+                                    //   color: Color(MyColors.grey02),
+                                    //   fontSize: 12,
+                                    //   fontWeight: FontWeight.w600,
+                                    // ),
                                   ),
                                 ],
                               ),
@@ -249,7 +250,7 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
                                   child: Text('Reschedule'),
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor: primaryColor,
-                                    onPrimary: Colors.white,
+                                    onPrimary: whiteColor,
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(10),
                                     ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:medoc_patient_app/common/utils/colors.dart';
 import 'package:medoc_patient_app/common/utils/gap.dart';
+import 'package:medoc_patient_app/common/utils/text_style.dart';
 import 'package:medoc_patient_app/features/main/widgets/action_card.dart';
 import 'package:medoc_patient_app/features/main/widgets/appointment_card.dart';
 import 'package:medoc_patient_app/features/main/widgets/category_icon.dart';
@@ -36,7 +37,6 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF8F8F8),
       extendBody: true,
       appBar: AppBar(
         backgroundColor: primaryColor,
@@ -45,29 +45,25 @@ class HomeScreen extends StatelessWidget {
             bottom: 8,
           ),
           leading: CircleAvatar(
-            backgroundColor: Color(0xFF8ab6be).withOpacity(0.2),
+            backgroundColor: lightBgColor.withOpacity(0.2),
             radius: 20,
             child: Icon(
               Icons.health_and_safety_outlined,
-              color: Colors.white,
+              color: whiteColor,
             ),
           ),
           title: Text(
             "Welcome back!",
             style:
-                TextStyle(color: Colors.white.withOpacity(0.8), fontSize: 13),
+                TextStyle(color: whiteColor.withOpacity(0.8), fontSize: 13),
           ),
           subtitle: Text(
             "Ashley Octavia",
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
-            ),
+            style: smallHeaderStyle.copyWith(color: whiteColor,),
           ),
           trailing: Icon(
             Icons.notifications,
-            color: Colors.white,
+            color: whiteColor,
           ),
         ),
       ),
@@ -85,7 +81,7 @@ class HomeScreen extends StatelessWidget {
             //   ),
             //   decoration: BoxDecoration(
             //     borderRadius: BorderRadius.circular(12),
-            //     color: Colors.white,
+            //     color: whiteColor,
             //     boxShadow: [
             //       BoxShadow(
             //         color: Color(0xFFE4E3E3),
@@ -143,18 +139,16 @@ class HomeScreen extends StatelessWidget {
             // ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12.0),
-              
-              child: Container(height: 85, child: CategoryIcons(),),
+              child: Container(
+                height: 85,
+                child: CategoryIcons(),
+              ),
             ),
             8.height,
             ListTile(
               leading: Text(
                 "Next Appointment",
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                ),
+                style: mediumHeaderStyle,
               ),
               // trailing: Text(
               //   "See more",
@@ -167,9 +161,8 @@ class HomeScreen extends StatelessWidget {
                 onPressed: () => Get.toNamed(AppRoutes.appointments),
                 child: Text(
                   "See more",
-                  style: TextStyle(
+                  style: subtitleStyle.copyWith(
                     fontSize: 14,
-                    color: Colors.grey,
                   ),
                 ),
               ),
@@ -182,16 +175,11 @@ class HomeScreen extends StatelessWidget {
             ListTile(
               leading: Text(
                 "Doctor of the week",
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                ),
+                style: mediumHeaderStyle,
               ),
               trailing: Text(
                 "See more",
-                style: TextStyle(
-                  color: Colors.grey,
+                style: subtitleStyle.copyWith(
                   fontSize: 14,
                 ),
               ),
@@ -212,7 +200,6 @@ class HomeScreen extends StatelessWidget {
                       handleBook: () => Get.toNamed(AppRoutes.doctor_detail),
                       handleMessage: () => print("Message"),
                     ),
-                 
                 ],
               ),
             ),

@@ -1,4 +1,12 @@
 import 'package:get/get.dart';
+import 'package:medoc_patient_app/features/appointment/screens/appointment_screen.dart';
+import 'package:medoc_patient_app/features/appointment/screens/my_appointment_screen.dart';
+import 'package:medoc_patient_app/features/appointment/screens/patient_detail_screen.dart';
+import 'package:medoc_patient_app/features/appointment/screens/payment_screen.dart';
+import 'package:medoc_patient_app/features/appointment/screens/reschedule_appointment_screen.dart';
+import 'package:medoc_patient_app/features/appointment/screens/reschedule_appointment_screen_0.dart';
+import 'package:medoc_patient_app/features/appointment/screens/review_summary_screen.dart';
+import 'package:medoc_patient_app/features/appointment/screens/select_package_screen.dart';
 import 'package:medoc_patient_app/features/auth/screens/registration_screen.dart';
 import 'package:medoc_patient_app/features/auth/screens/user_information_screen.dart';
 import 'package:medoc_patient_app/features/auth/screens/verification_screen.dart';
@@ -6,7 +14,7 @@ import 'package:medoc_patient_app/features/auth/widgets/doctor_detail.dart';
 import 'package:medoc_patient_app/features/auth/widgets/home.dart';
 import 'package:medoc_patient_app/features/main/screens/ambulance_screen.dart';
 import 'package:medoc_patient_app/features/main/screens/appointment.dart';
-import 'package:medoc_patient_app/features/main/screens/appointment_screen.dart';
+// import 'package:medoc_patient_app/features/main/screens/appointment_screen.dart';
 import 'package:medoc_patient_app/features/main/screens/doctor_detail_screen.dart';
 import 'package:medoc_patient_app/features/main/screens/faq_screen.dart';
 import 'package:medoc_patient_app/features/main/screens/help_screen.dart';
@@ -39,6 +47,14 @@ class AppRoutes {
   static const String help = '/help';
   static const String faqs = '/faqs';
   static const String appointment = '/booking';
+  static const String my_appointment = '/my_appointment';
+  static const String appointment_screen = '/appointment/second';
+  static const String reschedule_appointment_screen_0 = '/appointment/reschedule/reason';
+  static const String reschedule_appointment_screen = '/appointment/reschedule';
+  static const String patient_detail = '/appointment/patient_detail';
+  static const String payment = '/appointment/payment';
+  static const String review = '/appointment/review';
+  static const String package = '/appointment/package';
 
 
 
@@ -46,7 +62,7 @@ class AppRoutes {
     // GetPage(name: home, page: () => PharmarcyMainPage()),
     GetPage(name: home, page: () => MainPage()),
     GetPage(name: hospitals, page: () => HospitalScreen()),
-    GetPage(name: appointments, page: () => AppointmentScreen()),
+    // GetPage(name: appointments, page: () => AppointmentScreen()),
     GetPage(name: ambulance, page: () => AmbulanceScreen()),
     GetPage(name: medical_post, page: () => MedicalPostScreen()),
     GetPage(name: pill, page: () => PillScreen()),
@@ -60,5 +76,13 @@ class AppRoutes {
     GetPage(name: help, page: () => HelpingScreen()),
     GetPage(name: faqs, page: () => FAQsScreen()),
     GetPage(name: appointment, page: () => Appointment()),
+    GetPage(name: my_appointment, page: () => MyAppointmentScreen()),
+    GetPage(name: appointment_screen, page: () => AppointmentScreen()),
+    GetPage(name: reschedule_appointment_screen_0, page: () => RescheduleAppointmentFirstScreen()),
+    GetPage(name: reschedule_appointment_screen, page: () => RescheduleAppointment()),
+    GetPage(name: patient_detail, page: () => PatientDetailScreen()),
+    GetPage(name: payment, page: () => PaymentScreen()),
+    GetPage(name: review, page: () => ReviewSummaryScreen()),
+    GetPage(name: package, page: () => PackageScreen()),
   ];
 }

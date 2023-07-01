@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:medoc_patient_app/common/utils/colors.dart';
 import 'package:medoc_patient_app/common/utils/gap.dart';
+import 'package:medoc_patient_app/common/utils/text_style.dart';
 
 class DetailDoctorCard extends StatelessWidget {
   const DetailDoctorCard({
@@ -28,17 +29,19 @@ class DetailDoctorCard extends StatelessWidget {
                   children: [
                     Text(
                       'Dr. Josua Simorangkir',
-                      style: TextStyle(
-                          color: Color(MyColors.header01),
-                          fontWeight: FontWeight.w700),
+                      style: smallHeaderStyle,
+                    //   style: TextStyle(
+                    //       color: Color(MyColors.header01),
+                    //       fontWeight: FontWeight.w700),
                     ),
                     8.height,
                     Text(
                       'Heart Specialist',
-                      style: TextStyle(
-                        color: Color(MyColors.grey02),
-                        fontWeight: FontWeight.w500,
-                      ),
+                      style: subtitleStyle.copyWith(fontWeight: FontWeight.w500,),
+                      // style: TextStyle(
+                      //   color: Color(MyColors.grey02),
+                      //   fontWeight: FontWeight.w500,
+                      // ),
                     ),
                   ],
                 ),

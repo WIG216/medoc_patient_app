@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:medoc_patient_app/common/utils/colors.dart';
 import 'package:medoc_patient_app/common/utils/gap.dart';
+import 'package:medoc_patient_app/common/utils/text_style.dart';
 
 class DoctorCard extends StatelessWidget {
   final Function()? handleBook, handleMessage;
@@ -19,7 +20,7 @@ class DoctorCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 0,
-      color: Colors.white,
+      color: whiteColor,
       child: Container(
         width: 175,
         padding: EdgeInsets.symmetric(
@@ -50,18 +51,12 @@ class DoctorCard extends StatelessWidget {
                 children: [
                   Text(
                     doctorName,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 14,
-                    ),
+                    style: smallHeaderStyle,
                   ),
                   5.height,
                   Text(
                     doctorTitle,
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 12,
-                    ),
+                    style: subtitleStyle,
                   ),
                   5.height,
                   Row(
@@ -70,10 +65,7 @@ class DoctorCard extends StatelessWidget {
                         onPressed: handleBook,
                         child: Text(
                           "Book Now",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: smallHeaderStyle.copyWith(color: whiteColor,),
                         ),
                         style: ElevatedButton.styleFrom(
                           backgroundColor: primaryColor,

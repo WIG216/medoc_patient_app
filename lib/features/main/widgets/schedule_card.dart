@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:medoc_patient_app/common/utils/colors.dart';
+import 'package:medoc_patient_app/common/utils/gap.dart';
 
 class ScheduleCard extends StatelessWidget {
   const ScheduleCard({
@@ -9,41 +11,35 @@ class ScheduleCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Color(0xFF8ab6be).withOpacity(0.2),
+        color: lightPrimaryColor.withOpacity(0.2),
         borderRadius: BorderRadius.circular(10),
       ),
       width: double.infinity,
       padding: EdgeInsets.all(12),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
-        children: const [
+        children:  [
           Icon(
             Icons.calendar_today,
-            color: Colors.white,
+            color: whiteColor,
             size: 15,
           ),
-          SizedBox(
-            width: 5,
-          ),
+          5.width,
           Text(
             'Mon, July 29',
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(color: whiteColor),
           ),
-          SizedBox(
-            width: 20,
-          ),
+          20.width,
           Icon(
             Icons.access_alarm,
-            color: Colors.white,
+            color: whiteColor,
             size: 17,
           ),
-          SizedBox(
-            width: 5,
-          ),
+          5.width,
           Flexible(
             child: Text(
               '11:00 ~ 12:10',
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: whiteColor),
             ),
           ),
         ],

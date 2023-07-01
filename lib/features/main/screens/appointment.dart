@@ -1,8 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:medoc_patient_app/common/enum/appointment_period.dart';
 import 'package:medoc_patient_app/common/utils/colors.dart';
 import 'package:medoc_patient_app/common/utils/gap.dart';
+import 'package:medoc_patient_app/common/utils/text_style.dart';
+import 'package:medoc_patient_app/features/main/controllers/appointment_controller.dart';
+import 'package:medoc_patient_app/features/main/widgets/period_tab.dart';
 
 class Appointment extends StatefulWidget {
   Appointment({super.key});
@@ -11,7 +15,57 @@ class Appointment extends StatefulWidget {
   State<Appointment> createState() => _AppointmentState();
 }
 
+List<Map> period = [
+  {
+    "time": "9:00AM",
+    "icon": Icons.sunny,
+    "status": FilterStatus.Morning,
+  },
+  {
+    "time": "9:30AM",
+    "icon": Icons.sunny,
+    "status": FilterStatus.Morning,
+  },
+  {
+    "time": "10:00AM",
+    "icon": Icons.sunny,
+    "status": FilterStatus.Morning,
+  },
+  {
+    "time": "10:30AM",
+    "icon": Icons.sunny,
+    "status": FilterStatus.Morning,
+  },
+  {
+    "time": "11:00AM",
+    "icon": Icons.sunny,
+    "status": FilterStatus.Morning,
+  },
+  {
+    "time": "4:30PM",
+    "icon": CupertinoIcons.cloud_sun_fill,
+    "status": FilterStatus.Evening,
+  },
+  {
+    "time": "5:00PM",
+    "icon": CupertinoIcons.cloud_sun_fill,
+    "status": FilterStatus.Evening,
+  },
+  {
+    "time": "5:30PM",
+    "icon": CupertinoIcons.cloud_sun_fill,
+    "status": FilterStatus.Evening,
+  },
+  {
+    "time": "6:00PM",
+    "icon": CupertinoIcons.cloud_sun_fill,
+    "status": FilterStatus.Evening,
+  },
+];
+
 class _AppointmentState extends State<Appointment> {
+  AppointmentController _appointmentController = Get.find();
+
   bool isClicked = false;
   final List categories = [
     {
@@ -39,6 +93,9 @@ class _AppointmentState extends State<Appointment> {
       "trailing": "2000 CFA",
     },
   ];
+
+  Alignment _alignment = Alignment.centerLeft;
+  late var status = _appointmentController.status.value;
 
   // Define a function to show the modal dialog
   void _showModalDialog(BuildContext context) {
@@ -152,6 +209,9 @@ class _AppointmentState extends State<Appointment> {
 
   @override
   Widget build(BuildContext context) {
+    List<Map> filteredSchedules = period.where((var period) {
+      return period['status'] == _appointmentController.status.value;
+    }).toList();
     return Scaffold(
       backgroundColor: Color(0xFFF8F8F8),
       appBar: AppBar(
@@ -191,75 +251,215 @@ class _AppointmentState extends State<Appointment> {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12.0),
-        child: ListView(
-          children: [
-            8.height,
-            Text(
-              "10 June, Monday",
-              style: TextStyle(
-                fontWeight: FontWeight.w600,
-                color: Colors.grey,
-              ),
-            ),
-            12.height,
-            Row(
-              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  child: ClickableContainer(
-                    icon: Icons.sunny,
-                    text: "Morning",
-                  ),
+        child: Obx(() {
+          return ListView(
+            children: [
+              8.height,
+              Text(
+                "10 June, Monday",
+                style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  color: Colors.grey,
                 ),
-                20.width,
-                Expanded(
-                  child: ClickableContainer(
-                    icon: CupertinoIcons.cloud_sun_fill,
-                    text: "Evening",
-                  ),
-                ),
-              ],
-            ),
-            16.height,
-            SelectTimeList(),
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //   children: [
-            //     SelectTime(
-            //       time: "9:00AM",
-            //     ),
-            //     SelectTime(
-            //       time: "9:30AM",
-            //     ),
-            //     SelectTime(
-            //       time: "10:00AM",
-            //     ),
-
-            //     SelectTime(
-            //       time: "10:30AM",
-            //     ),
-
-            //   ],
-            // ),
-            30.height,
-            // ClickableContainer(),
-            Text(
-              "Fees information",
-              style: TextStyle(
-                fontWeight: FontWeight.w600,
-                color: Colors.grey,
               ),
-            ),
-            8.height,
-            for (var category in categories)
-              ClickableListTile(
-                title: category['title'],
-                subtitle: category['subtitle'],
-                trailing: category['trailing'],
-                icon: category['icon'],
-              )
-          ],
-        ),
+              12.height,
+              Stack(
+                children: [
+                  Container(
+                    width: double.infinity,
+                    height: 70,
+                    // padding: EdgeInsets.only(right: 20),
+                    decoration: BoxDecoration(
+                      color: scaffoldBgColor,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        for (FilterStatus filterStatus in FilterStatus.values)
+                          Expanded(
+                            child: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  if (filterStatus == FilterStatus.Morning) {
+                                    status = FilterStatus.Morning;
+                                    _appointmentController.updateStatus(status);
+                                    _alignment = Alignment.centerLeft;
+                                  } else if (filterStatus ==
+                                      FilterStatus.Evening) {
+                                    status = FilterStatus.Evening;
+                                    _alignment = Alignment.centerRight;
+                                  }
+                                });
+                              },
+                              child: Align(
+                                alignment: filterStatus.name == "Morning"
+                                    ? Alignment.centerLeft
+                                    : Alignment.centerRight,
+                                child: Container(
+                                  width: 160,
+                                  padding: EdgeInsets.all(12),
+                                  // margin: EdgeInsets.only(right: 12),
+                                  decoration: BoxDecoration(
+                                    color: Color(0xFFFFFFFF),
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      Container(
+                                        padding: EdgeInsets.all(6),
+                                        decoration: BoxDecoration(
+                                          color: Color(0xFFf0f0f1),
+                                          borderRadius:
+                                              BorderRadius.circular(12),
+                                        ),
+                                        child: Icon(
+                                            filterStatus.name == "Morning"
+                                                ? Icons.sunny
+                                                : CupertinoIcons.cloud_sun_fill,
+                                            color: Color(0xFF9c9fb0)),
+                                      ),
+                                      SizedBox(width: 12),
+                                      Text(
+                                        filterStatus.name,
+                                        style:
+                                            TextStyle(color: Color(0xFFc4c6d0)),
+                                      ),
+                                    ],
+                                  ),
+
+                                  // child: Center(
+                                  //   child: Text(
+                                  //     filterStatus.name,
+                                  //     style: subtitleStyle.copyWith(fontSize: 14, fontWeight: FontWeight.bold,),
+                                  //   //   style:
+                                  //   //       kFilterStyle.copyWith(color: Colors.grey),
+                                  //   // ),
+                                  // ),
+                                ),
+                              ),
+                            ),
+                          ),
+                      ],
+                    ),
+                  ),
+                  AnimatedAlign(
+                    duration: Duration(milliseconds: 200),
+                    alignment: _alignment,
+                    child: Container(
+                      width: 160,
+                      // height: 40,
+                      decoration: BoxDecoration(
+                        color: primaryColor,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Expanded(
+                        child: Container(
+                          padding: EdgeInsets.all(12),
+                          decoration: BoxDecoration(
+                            color: isClicked ? Color(0xFFFFFFFF) : primaryColor,
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Row(
+                            children: [
+                              Container(
+                                padding: EdgeInsets.all(6),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                child: Icon(
+                                  status.name == "Morning"
+                                      ? Icons.sunny
+                                      : CupertinoIcons.cloud_sun_fill,
+                                  color: primaryColor,
+                                ),
+                              ),
+                              SizedBox(width: 12),
+                              Text(
+                                status.name,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+
+                      // child: Center(
+                      //   child: Text(status.name,
+                      //       style: smallHeaderStyle.copyWith(
+                      //           color: whiteColor, fontSize: 14)),
+                      // ),
+                    ),
+                  )
+                ],
+              ),
+
+              // 12.height,
+
+              // Row(
+              //   // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //   children: [
+              //     Expanded(
+              //       child: ClickableContainer(
+              //         icon: Icons.sunny,
+              //         text: "Morning",
+              //       ),
+              //     ),
+              //     20.width,
+              //     Expanded(
+              //       child: ClickableContainer(
+              //         icon: CupertinoIcons.cloud_sun_fill,
+              //         text: "Evening",
+              //       ),
+              //     ),
+              //   ],
+              // ),
+              // 16.height,
+
+              SelectTimeList(),
+
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //   children: [
+              //     SelectTime(
+              //       time: "9:00AM",
+              //     ),
+              //     SelectTime(
+              //       time: "9:30AM",
+              //     ),
+              //     SelectTime(
+              //       time: "10:00AM",
+              //     ),
+
+              //     SelectTime(
+              //       time: "10:30AM",
+              //     ),
+
+              //   ],
+              // ),
+              30.height,
+              // ClickableContainer(),
+              Text(
+                "Fees information",
+                style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  color: Colors.grey,
+                ),
+              ),
+              8.height,
+              for (var category in categories)
+                ClickableListTile(
+                  title: category['title'],
+                  subtitle: category['subtitle'],
+                  trailing: category['trailing'],
+                  icon: category['icon'],
+                )
+            ],
+          );
+        }),
       ),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.symmetric(
@@ -269,7 +469,7 @@ class _AppointmentState extends State<Appointment> {
         child: SizedBox(
           height: 50,
           child: ElevatedButton(
-            onPressed: () => _showModalDialog(context),
+            onPressed: () => _appointmentController.onSubmit(),
             child: Text(
               "Pay Now",
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
@@ -284,6 +484,7 @@ class _AppointmentState extends State<Appointment> {
           ),
         ),
       ),
+    
     );
   }
 }
@@ -307,7 +508,15 @@ class ClickableListTile extends StatefulWidget {
 }
 
 class _ClickableListTileState extends State<ClickableListTile> {
+  AppointmentController _appointmentController = Get.find();
   bool isClicked = false;
+  List<Map<String, dynamic>> feesInfo = [];
+  // List<Map<String, dynamic>> clickedItems = [];
+
+//   void addAllItemsToClickedItems() {
+//   clickedItems = List<Map<String, dynamic>>.from(feesInfo);
+//   print(clickedItems);
+// }
 
   @override
   Widget build(BuildContext context) {
@@ -315,6 +524,17 @@ class _ClickableListTileState extends State<ClickableListTile> {
       onTap: () {
         setState(() {
           isClicked = !isClicked;
+
+          if (isClicked) {
+            feesInfo.add({
+              'title': widget.title,
+              'trailing': widget.trailing,
+            });
+            _appointmentController.updatedFeesInformation(feesInfo);
+          } else {
+            feesInfo.removeWhere((item) => item['title'] == widget.title);
+            _appointmentController.updatedFeesInformation(feesInfo);
+          }
         });
       },
       child: Container(
@@ -436,66 +656,92 @@ class SelectTimeList extends StatefulWidget {
 }
 
 class _SelectTimeListState extends State<SelectTimeList> {
-  late String activeTime;
+  AppointmentController _appointmentController = Get.find();
 
-  @override
-  void initState() {
-    super.initState();
-    activeTime = "9:00AM"; // Set initial active time
-  }
+  late String activeTime = _appointmentController.activeTime.value;
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   activeTime = "9:00AM";
+  // }
+  List<Map> period = [
+    {
+      "time": "9:00AM",
+      "icon": Icons.sunny,
+      "status": FilterStatus.Morning,
+    },
+    {
+      "time": "9:30AM",
+      "icon": Icons.sunny,
+      "status": FilterStatus.Morning,
+    },
+    {
+      "time": "10:00AM",
+      "icon": Icons.sunny,
+      "status": FilterStatus.Morning,
+    },
+    {
+      "time": "10:30AM",
+      "icon": Icons.sunny,
+      "status": FilterStatus.Morning,
+    },
+    {
+      "time": "11:00AM",
+      "icon": Icons.sunny,
+      "status": FilterStatus.Morning,
+    },
+    {
+      "time": "4:30PM",
+      "icon": CupertinoIcons.cloud_sun_fill,
+      "status": FilterStatus.Evening,
+    },
+    {
+      "time": "5:00PM",
+      "icon": CupertinoIcons.cloud_sun_fill,
+      "status": FilterStatus.Evening,
+    },
+    {
+      "time": "5:30PM",
+      "icon": CupertinoIcons.cloud_sun_fill,
+      "status": FilterStatus.Evening,
+    },
+    {
+      "time": "6:00PM",
+      "icon": CupertinoIcons.cloud_sun_fill,
+      "status": FilterStatus.Evening,
+    },
+  ];
+  late FilterStatus status = _appointmentController.status.value;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      // height: 200,
-      // width: 70,
+    List<Map> filteredSchedules = period.where((var period) {
+      return period['status'] == status;
+    }).toList();
+    return SizedBox(
       height: 50,
-      child: ListView(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              SelectTime(
-                time: "9:00AM",
-                isActive: activeTime == "9:00AM",
-                onTap: () {
-                  setState(() {
-                    activeTime = "9:00AM";
-                  });
-                },
-              ),
-              SelectTime(
-                time: "9:30AM",
-                isActive: activeTime == "9:30AM",
-                onTap: () {
-                  setState(() {
-                    activeTime = "9:30AM";
-                  });
-                },
-              ),
-              SelectTime(
-                time: "10:00AM",
-                isActive: activeTime == "10:00AM",
-                onTap: () {
-                  setState(() {
-                    activeTime = "10:00AM";
-                  });
-                },
-              ),
-              SelectTime(
-                time: "10:30AM",
-                isActive: activeTime == "10:30AM",
-                onTap: () {
-                  setState(() {
-                    activeTime = "10:30AM";
-                  });
-                },
-              ),
-            ],
-          ),
-          // Add more SelectTime widgets as needed
-        ],
-      ),
+      child: GridView.builder(
+          gridDelegate:
+              SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4),
+          itemCount: filteredSchedules.length,
+          itemBuilder: (context, index) {
+            var _schedule = filteredSchedules[index];
+            return Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                SelectTime(
+                  time: _schedule["time"],
+                  isActive: activeTime == _schedule["time"],
+                  onTap: () {
+                    setState(() {
+                      activeTime = _schedule["time"];
+                    });
+                    _appointmentController.updateActiveTime(activeTime);
+                  },
+                ),
+              ],
+            );
+          }),
     );
   }
 }
@@ -522,11 +768,10 @@ class _SelectTimeState extends State<SelectTime> {
     return GestureDetector(
       onTap: widget.onTap,
       child: Container(
-        height: 40,
-        // width: 60,
+        // height: 40,
         padding: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
         decoration: BoxDecoration(
-          color: widget.isActive ? Color(0xFFf9f9fa) : Colors.white,
+          color: widget.isActive ? Color(0xFFf9f9fa) : whiteColor,
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
             color: widget.isActive ? primaryColor : Color(0xFFc4c6d0),
@@ -543,4 +788,3 @@ class _SelectTimeState extends State<SelectTime> {
     );
   }
 }
-

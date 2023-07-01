@@ -25,21 +25,23 @@ class DetailBody extends StatelessWidget {
           30.height,
           Text(
             'About Doctor',
-            style: kTitleStyle,
+            style: smallHeaderStyle,
           ),
           15.height,
           Text(
             'Dr. Joshua Simorangkir is a specialist in internal medicine who specialzed blah blah.',
-            style: TextStyle(
-              color: Color(MyColors.purple01),
-              fontWeight: FontWeight.w500,
-              height: 1.5,
-            ),
+            // style: TextStyle(
+            //   color: Color(MyColors.purple01),
+            //   fontWeight: FontWeight.w500,
+            //   height: 1.5,
+            // ),
+            style: subtitleStyle.copyWith(height: 2, fontWeight: FontWeight.w500,),
           ),
           25.height,
           Text(
             'Location',
-            style: kTitleStyle,
+            style: smallHeaderStyle,
+            // style: kTitleStyle,
           ),
           25.height,
           DoctorLocation(),

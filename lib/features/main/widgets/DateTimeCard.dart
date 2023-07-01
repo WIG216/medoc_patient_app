@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:medoc_patient_app/common/utils/colors.dart';
+import 'package:medoc_patient_app/common/utils/gap.dart';
+import 'package:medoc_patient_app/common/utils/text_style.dart';
 
 class DateTimeCard extends StatelessWidget {
   const DateTimeCard({
@@ -10,7 +12,7 @@ class DateTimeCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: lightPrimaryColor.withOpacity(0.1),
+        color: primaryColor.withOpacity(0.1),
         borderRadius: BorderRadius.circular(8),
       ),
       width: double.infinity,
@@ -31,8 +33,7 @@ class DateTimeCard extends StatelessWidget {
               ),
               Text(
                 'Mon, July 29',
-                style: TextStyle(
-                  fontSize: 12,
+                style: subtitleStyle.copyWith(
                   color: primaryColor,
                   fontWeight: FontWeight.bold,
                 ),
@@ -46,12 +47,10 @@ class DateTimeCard extends StatelessWidget {
                 color: primaryColor,
                 size: 17,
               ),
-              SizedBox(
-                width: 5,
-              ),
+              5.width,
               Text(
                 '11:00 ~ 12:10',
-                style: TextStyle(
+                style: bodyStyle.copyWith(
                   color: primaryColor,
                   fontWeight: FontWeight.bold,
                 ),

@@ -1,21 +1,14 @@
 import 'package:flutter/material.dart';
 
+// const Color primaryColor = Color(0xFF0072B1);
 const Color primaryColor = Color(0xFF146D7C);
-const Color darkPrimayColor = Color(0xFF0E4F60);
-const Color lightPrimaryColor = Color(0xFF1D8DA0);
 
-class MyColors {
-  static int header01 = 0xff151a56;
-  static int primary = 0xff575de3;
-  static int purple01 = 0xff918fa5;
-  static int purple02 = 0xff6b6e97;
-  static int yellow01 = 0xffeaa63b;
-  static int yellow02 = 0xfff29b2b;
-  static int bg = 0xfff5f3fe;
-  static int bg01 = 0xff6f75e1;
-  static int bg02 = 0xffc3c5f8;
-  static int bg03 = 0xffe8eafe;
-  static int text01 = 0xffbec2fc;
-  static int grey01 = 0xffe9ebf0;
-  static int grey02 = 0xff9796af;
-}
+const Color scaffoldBgColor = Color(0xFFF8F8F8);
+const Color whiteColor = Color(0xFFFFFFFF);
+const Color textColor = Color(0xFF252528);
+const Color subtitleColor= Colors.grey;
+const Color lightBgColor = Color(0xFF8ab6be);
+
+const Color darkPrimayColor = Color(0xFF0E4F60);
+// const Color lightPrimaryColor = Color(0xFF5CC8FF);
+const Color lightPrimaryColor = Color(0xFF1D8DA0);

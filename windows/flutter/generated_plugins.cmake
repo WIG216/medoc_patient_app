@@ -4,11 +4,15 @@
 
 list(APPEND FLUTTER_PLUGIN_LIST
   agora_rtc_engine
+  audioplayers_windows
+  awesome_notifications
   firebase_core
   geolocator_windows
   iris_method_channel
   permission_handler_windows
   smart_auth
+  zego_express_engine
+  zego_zim
 )
 
 list(APPEND FLUTTER_FFI_PLUGIN_LIST

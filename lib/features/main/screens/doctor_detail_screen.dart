@@ -23,7 +23,7 @@ class SliverDoctorDetail extends StatelessWidget {
                 icon: Icon(
                   Icons.arrow_back,
                   color: Colors.white,
-                )),
+                ),),
             backgroundColor: primaryColor,
             expandedHeight: 130,
             flexibleSpace: Stack(

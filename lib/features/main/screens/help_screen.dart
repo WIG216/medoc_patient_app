@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:medoc_patient_app/common/utils/colors.dart';
 import 'package:medoc_patient_app/common/utils/gap.dart';
+import 'package:medoc_patient_app/common/utils/text_style.dart';
 
 class HelpingScreen extends StatelessWidget {
-  const HelpingScreen({super.key});
+  HelpingScreen({super.key});
+  TextEditingController textController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -15,10 +17,7 @@ class HelpingScreen extends StatelessWidget {
         elevation: 0,
         title: Text(
           "Help",
-          style: TextStyle(
-            color: Colors.black54,
-            fontSize: 20,
-          ),
+          style: largeHeadereStyle.copyWith(color: Colors.black54),
         ),
         centerTitle: true,
         leading: Container(
@@ -38,11 +37,13 @@ class HelpingScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(8),
               ),
             ),
-            child: Icon(Icons.arrow_back, color: Colors.black45,),
+            child: Icon(
+              Icons.arrow_back,
+              color: Colors.black45,
+            ),
           ),
         ),
       ),
-      
       body: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 12,
@@ -51,6 +52,7 @@ class HelpingScreen extends StatelessWidget {
           children: [
             24.height,
             TextField(
+              controller: textController,
               maxLines: 10,
               style: TextStyle(
                 color: Colors.grey,
@@ -73,7 +75,8 @@ class HelpingScreen extends StatelessWidget {
             16.height,
             Text(
               "Fill out the form above to send an email and one of our team members will address your question as soon as possible",
-              style: TextStyle(color: Colors.grey, fontSize: 15, height: 1.6),
+              // style: TextStyle(color: Colors.grey, fontSize: 15, height: 1.6),
+              style: subtitleStyle.copyWith(height: 1.6, fontSize: 15,),
             ),
           ],
         ),
@@ -86,14 +89,16 @@ class HelpingScreen extends StatelessWidget {
         child: SizedBox(
           height: 50,
           child: ElevatedButton(
-            onPressed: () {},
+            onPressed: () => print(textController.text),
             child: Text(
               "Send mail",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+              style: smallHeaderStyle.copyWith(
+                fontSize: 15,
+                color: whiteColor,
+              ),
             ),
             style: ElevatedButton.styleFrom(
               primary: primaryColor,
-              onPrimary: Colors.white,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8),
               ),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:medoc_patient_app/common/utils/colors.dart';
 import 'package:medoc_patient_app/common/utils/gap.dart';
+import 'package:medoc_patient_app/common/utils/text_style.dart';
 
 class UserProfile extends StatelessWidget {
   UserProfile({super.key});
@@ -30,7 +31,7 @@ class UserProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-  final size = MediaQuery.of(context).size.width/100 * 70 ;
+    final size = MediaQuery.of(context).size.width / 100 * 70;
     return Scaffold(
       backgroundColor: Color(0xFFF8F8F8),
       body: SingleChildScrollView(
@@ -54,7 +55,15 @@ class UserProfile extends StatelessWidget {
                             bottomRight: Radius.circular(20),
                           ),
                         ),
-                        child: Center(child: Text("Settings", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white,),)),
+                        child: Center(
+                          child: Text(
+                            "Settings",
+                            style: largeHeadereStyle.copyWith(
+                              color: whiteColor,
+                              fontSize: 18,
+                            ),
+                          ),
+                        ),
                       ),
                       Align(
                         alignment: Alignment.bottomCenter,
@@ -74,26 +83,20 @@ class UserProfile extends StatelessWidget {
                                 scale: 5,
                               ),
                             ),
-                            title: Text(
-                              "hello!",
-                              style: TextStyle(
-                                color: lightPrimaryColor,
-                                fontWeight: FontWeight.w400,
-                                fontSize: 13,
-                              ),
-                            ),
+                            title: Text("hello!",
+                                style: subtitleStyle.copyWith(
+                                  color: primaryColor,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 13,
+                                ),),
                             subtitle: Text(
                               "John Doe",
-                              style: TextStyle(
-                                color: primaryColor,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                              ),
+                              style: mediumHeaderStyle.copyWith(color: primaryColor,),
                             ),
                             trailing: IconButton(
                               style: IconButton.styleFrom(
                                 backgroundColor:
-                                    Color(0xFF8ab6be).withOpacity(0.2),
+                                    lightBgColor.withOpacity(0.2),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(8),
                                 ),
@@ -165,14 +168,17 @@ class ProfileListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 14.0, vertical: 8,),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 14.0,
+        vertical: 8,
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(
             children: [
               CircleAvatar(
-                backgroundColor: Color(0xFF8ab6be).withOpacity(0.2),
+                backgroundColor: lightBgColor.withOpacity(0.2),
                 radius: 25,
                 child: Icon(
                   leadingIcon,
@@ -192,7 +198,7 @@ class ProfileListTile extends StatelessWidget {
               children: [
                 Text(
                   trailing,
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                  style: subtitleStyle.copyWith(fontWeight: FontWeight.w400, fontSize: 15),
                 ),
                 8.width,
                 Icon(
