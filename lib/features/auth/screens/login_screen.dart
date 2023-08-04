@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -19,10 +17,18 @@ class LoginScreen extends StatelessWidget {
   final passwordController = TextEditingController();
   final AuthController _authController = Get.find();
 
-  void _onValidation() {
+  final loading = false.obs;
+
+  void _onValidation() async {
     if (_formKey.currentState!.validate()) {
-      _authController.signInWithEmailAndPassword(
-          email: emailController.text, password: passwordController.text);
+      loading.value = true;
+      
+      await _authController.signInWithEmailAndPassword(
+        email: emailController.text,
+        password: passwordController.text,
+      );
+
+      loading.value = false;
     }
   }
 
@@ -72,7 +78,7 @@ class LoginScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       "Email",
                       style: TextStyle(fontSize: 14),
                     ),
@@ -85,7 +91,7 @@ class LoginScreen extends StatelessWidget {
                       validator: (value) => _emailVerification(value),
                     ),
                     16.height,
-                    Text(
+                    const Text(
                       "Password",
                       style: TextStyle(fontSize: 14),
                     ),
@@ -116,34 +122,41 @@ class LoginScreen extends StatelessWidget {
             Container(
               width: double.infinity,
               padding: const EdgeInsets.symmetric(horizontal: 24.0),
-              height: 40,
+              height: 50,
               child: ElevatedButton(
                 onPressed: _onValidation,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      "Log In",
-                      style: TextStyle(
-                        fontSize: 14,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 8.0,
-                    ), // Adjust the spacing between text and icon
-                    Icon(
-                      Icons.arrow_forward,
-                      size: 20,
-                    ),
-                  ],
-                ),
                 style: ElevatedButton.styleFrom(
                   primary: primaryColor,
                   onPrimary: Colors.white,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(6),
                   ),
+                ),
+                child: Obx(
+                  () => loading.value
+                      ? const CupertinoActivityIndicator(
+                          color: Colors.white,
+                          radius: 16,
+                        )
+                      : const Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              "Log In",
+                              style: TextStyle(
+                                fontSize: 14,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 8.0,
+                            ), // Adjust the spacing between text and icon
+                            Icon(
+                              Icons.arrow_forward,
+                              size: 20,
+                            ),
+                          ],
+                        ),
                 ),
               ),
             ),

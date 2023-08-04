@@ -7,7 +7,6 @@ import 'package:medoc_patient_app/common/controller/controller.dart';
 import 'package:medoc_patient_app/common/utils/colors.dart';
 import 'package:medoc_patient_app/config/zegocloud.dart';
 import 'package:medoc_patient_app/features/auth/screens/login_screen.dart';
-import 'package:medoc_patient_app/features/auth/screens/registration_with_email_and_password.dart';
 import 'package:medoc_patient_app/features/main/screens/main.dart';
 import 'package:medoc_patient_app/firebase_options.dart';
 import 'package:medoc_patient_app/routes.dart';

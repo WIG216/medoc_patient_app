@@ -1,13 +1,10 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:medoc_patient_app/common/constants/constant.dart';
-import 'package:medoc_patient_app/common/enum/auth_status.dart';
 import 'package:medoc_patient_app/config/zegocloud.dart';
 import 'package:medoc_patient_app/features/auth/repositories/auth_repositories.dart';
 import 'package:medoc_patient_app/models/user_model.dart';
@@ -60,8 +57,14 @@ class AuthController extends GetxController {
     _authRepository.signInWithPhone(context, phoneNumber);
   }
 
-  void signInWithEmailAndPassword({required String email, required String password}) {
-    _authRepository.sigInWithEmailAndPassword(email:email, password:password);
+  Future<UserCredential?> signInWithEmailAndPassword({
+    required String email,
+    required String password,
+  }) async {
+    return await _authRepository.sigInWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
   }
 
   void registerWithEmailAndPassword({

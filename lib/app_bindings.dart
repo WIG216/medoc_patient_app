@@ -5,7 +5,6 @@ import 'package:medoc_patient_app/features/auth/controllers/auth_controller.dart
 import 'package:medoc_patient_app/features/doctor/controllers/doctor_controller.dart';
 import 'package:medoc_patient_app/features/main/controllers/appointment_controller.dart';
 import 'package:medoc_patient_app/features/main/controllers/navigation_controller.dart';
-import 'package:medoc_patient_app/features/medical_bot/controllers/symptom_controller.dart';
 import 'package:medoc_patient_app/features/pharma/controllers/location_controller.dart';
 import 'package:medoc_patient_app/features/pharma/controllers/pharmacy_controller.dart';
 

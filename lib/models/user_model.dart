@@ -51,17 +51,17 @@ class Patient {
     DateTime? dob = dobTimestamp != null ? dobTimestamp.toDate() : null;
 
     return Patient(
-      fullName: map['fullName'],
-      phoneNumber: map['phoneNumber'],
+      fullName: map['fullName'] ?? '',
+      phoneNumber: map['phoneNumber'] ?? '',
       dateOfBirth: dob,
-      gender: map['gender'],
-      emailAddress: map['emailAddress'],
-      weight: map['weight'],
-      bloodGroup: map['bloodGroup'],
-      emergencyContact: map['emergencyContact'],
-      emergencyContactName: map['emergencyContactName'],
+      gender: map['gender'] ?? '',
+      emailAddress: map['emailAddress'] ?? '',
+      weight: map['weight'] ?? '',
+      bloodGroup: map['bloodGroup'] ?? '',
+      emergencyContact: map['emergencyContact'] ?? '',
+      emergencyContactName: map['emergencyContactName'] ?? '',
       isOnline: map['isOnline'] ?? false,
-      uid: map['uid'],
+      uid: map['uid'] ?? '',
       profilePic: map['profilePic'] ?? "",
     );
   }

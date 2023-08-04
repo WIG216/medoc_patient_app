@@ -2,15 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:medoc_patient_app/common/enum/auth_status.dart';
 import 'package:medoc_patient_app/common/utils/gap.dart';
 import 'package:medoc_patient_app/common/utils/text_style.dart';
-import 'package:medoc_patient_app/common/widgets/custom_elevated_button.dart';
 import 'package:medoc_patient_app/features/auth/controllers/auth_controller.dart';
-import 'package:medoc_patient_app/features/auth/widgets/custom_button.dart';
-import 'package:medoc_patient_app/features/auth/widgets/custom_textfield.dart';
 import 'package:medoc_patient_app/routes.dart';
-
 import '../../../common/utils/colors.dart';
 import '../widgets/input_field.dart';
 
@@ -27,12 +22,20 @@ class _RegisterWithEmailAndPasswordState
   final _formKey = GlobalKey<FormState>();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  final AuthController _authService = Get.find();
+  final _authService = Get.find<AuthController>();
 
-  void _onValidation() {
+  final loading = false.obs;
+
+  Future<void> _onValidation() async {
     if (_formKey.currentState!.validate()) {
-      _authService.signInWithEmailAndPassword(
-          email: emailController.text, password: passwordController.text);
+      loading.value = true;
+
+      await _authService.signInWithEmailAndPassword(
+        email: emailController.text,
+        password: passwordController.text,
+      );
+
+      loading.value = false;
     }
   }
 
@@ -41,8 +44,8 @@ class _RegisterWithEmailAndPasswordState
       return 'Enter Email';
     }
     final bool emailValid = RegExp(
-            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-        .hasMatch(value);
+      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
+    ).hasMatch(value);
     if (!emailValid) {
       return 'Enter Valid Email';
     }
@@ -57,8 +60,6 @@ class _RegisterWithEmailAndPasswordState
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
-
     return Scaffold(
       body: SafeArea(
         child: ListView(
@@ -91,7 +92,7 @@ class _RegisterWithEmailAndPasswordState
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       "Email",
                       style: TextStyle(fontSize: 14),
                     ),
@@ -104,7 +105,7 @@ class _RegisterWithEmailAndPasswordState
                       validator: (value) => _emailVerification(value),
                     ),
                     16.height,
-                    Text(
+                    const Text(
                       "Password",
                       style: TextStyle(fontSize: 14),
                     ),
@@ -124,34 +125,39 @@ class _RegisterWithEmailAndPasswordState
             Container(
               width: double.infinity,
               padding: const EdgeInsets.symmetric(horizontal: 24.0),
-              height: 40,
+              height: 50,
               child: ElevatedButton(
                 onPressed: _onValidation,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      "Create Account",
-                      style: TextStyle(
-                        fontSize: 14,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 8.0,
-                    ), // Adjust the spacing between text and icon
-                    Icon(
-                      Icons.arrow_forward,
-                      size: 20,
-                    ),
-                  ],
-                ),
                 style: ElevatedButton.styleFrom(
-                  primary: primaryColor,
-                  onPrimary: Colors.white,
+                  foregroundColor: Colors.white,
+                  backgroundColor: primaryColor,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(6),
                   ),
+                ),
+                child: Obx(
+                  () => loading.value
+                      ? const CupertinoActivityIndicator(
+                          color: Colors.white,
+                          radius: 16,
+                        )
+                      : const Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              "Create Account",
+                              style: TextStyle(
+                                fontSize: 14,
+                              ),
+                            ),
+                            SizedBox(width: 8.0),
+                            Icon(
+                              Icons.arrow_forward,
+                              size: 20,
+                            ),
+                          ],
+                        ),
                 ),
               ),
             ),

@@ -13,10 +13,7 @@ import 'package:medoc_patient_app/features/auth/screens/registration_screen.dart
 import 'package:medoc_patient_app/features/auth/screens/registration_with_email_and_password.dart';
 import 'package:medoc_patient_app/features/auth/screens/user_information_screen.dart';
 import 'package:medoc_patient_app/features/auth/screens/verification_screen.dart';
-import 'package:medoc_patient_app/features/auth/widgets/doctor_detail.dart';
-import 'package:medoc_patient_app/features/auth/widgets/home.dart';
 import 'package:medoc_patient_app/features/main/screens/ambulance_screen.dart';
-// import 'package:medoc_patient_app/features/main/screens/appointment_screen.dart';
 import 'package:medoc_patient_app/features/main/screens/doctor_detail_screen.dart';
 import 'package:medoc_patient_app/features/main/screens/faq_screen.dart';
 import 'package:medoc_patient_app/features/main/screens/help_screen.dart';
