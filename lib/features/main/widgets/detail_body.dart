@@ -7,8 +7,14 @@ import 'package:medoc_patient_app/features/main/widgets/doctor_info.dart';
 import 'package:medoc_patient_app/features/main/widgets/doctor_location.dart';
 
 class DetailBody extends StatelessWidget {
+  final String location, doctorName, speciality;
+  final int experience;
   const DetailBody({
     Key? key,
+    required this.location,
+    required this.doctorName,
+    required this.speciality,
+    required this.experience,
   }) : super(key: key);
 
   @override
@@ -19,9 +25,14 @@ class DetailBody extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          DetailDoctorCard(),
+          DetailDoctorCard(
+            doctorName: doctorName,
+            speciality: speciality,
+          ),
           15.height,
-          DoctorInfo(),
+          DoctorInfo(
+            experience: experience,
+          ),
           30.height,
           Text(
             'About Doctor',
@@ -29,33 +40,19 @@ class DetailBody extends StatelessWidget {
           ),
           15.height,
           Text(
-            'Dr. Joshua Simorangkir is a specialist in internal medicine who specialzed blah blah.',
-            // style: TextStyle(
-            //   color: Color(MyColors.purple01),
-            //   fontWeight: FontWeight.w500,
-            //   height: 1.5,
-            // ),
-            style: subtitleStyle.copyWith(height: 2, fontWeight: FontWeight.w500,),
+            'Dr. Geek is an Orthophoniste doctor who specializes in the field of speech and language therapy. With a deep understanding of communication disorders and speech-related difficulties, Dr. Geek provides comprehensive evaluation, diagnosis, and treatment to patients of all ages. ',
+            style: subtitleStyle.copyWith(
+              height: 2,
+              fontWeight: FontWeight.w500,
+            ),
           ),
           25.height,
           Text(
-            'Location',
+            location,
             style: smallHeaderStyle,
-            // style: kTitleStyle,
           ),
           25.height,
           DoctorLocation(),
-          // 25.height,
-          // ElevatedButton(
-          //   style: ElevatedButton.styleFrom(
-          //       primary: primaryColor,
-          //       onPrimary: Colors.white,
-          //       shape: RoundedRectangleBorder(
-          //         borderRadius: BorderRadius.circular(12),
-          //       )),
-          //   child: Text('Book Appointment'),
-          //   onPressed: () => {},
-          // )
         ],
       ),
     );

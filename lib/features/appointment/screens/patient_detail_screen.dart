@@ -8,7 +8,6 @@ import 'package:medoc_patient_app/features/main/controllers/appointment_controll
 import 'package:medoc_patient_app/features/appointment/controllers/appointment_controller.dart';
 import 'package:medoc_patient_app/routes.dart';
 
-
 class PatientDetailScreen extends StatefulWidget {
   const PatientDetailScreen({super.key});
 
@@ -86,6 +85,8 @@ class _PatientDetailScreenState extends State<PatientDetailScreen> {
               InputField(
                 hintText: 'Patient Name',
                 controller: nameController,
+                onChange: (newValue) =>
+                    _bookingController.setPateintName(newValue),
               ),
               16.height,
               Text(
@@ -131,11 +132,10 @@ class _PatientDetailScreenState extends State<PatientDetailScreen> {
                   items: dropdownItems,
                   elevation: 0,
                   onChanged: (String? newValue) {
-                    _bookingController.selectGender(newValue!);
+                    _bookingController.setGender(newValue!);
                   },
                   dropdownColor: Colors.white,
                   value: selectedValue,
-                 
                 ),
               ),
               16.height,
@@ -148,6 +148,8 @@ class _PatientDetailScreenState extends State<PatientDetailScreen> {
                 hintText: "Patient Age",
                 keyboardType: TextInputType.number,
                 controller: ageController,
+                onChange: (newValue) =>
+                    _bookingController.setPateintAge(newValue),
               ),
               16.height,
               Text(
@@ -155,8 +157,10 @@ class _PatientDetailScreenState extends State<PatientDetailScreen> {
                 style: mediumHeaderStyle,
               ),
               8.height,
-              TextField(
+              TextFormField(
                 controller: problemController,
+                onChanged: (newValue) =>
+                    _bookingController.setPatientProblem(newValue),
                 maxLines: 10,
                 style: TextStyle(
                   fontSize: 14,
@@ -200,7 +204,6 @@ class _PatientDetailScreenState extends State<PatientDetailScreen> {
           ),
         ),
       ),
-    
     );
   }
 }

@@ -70,16 +70,17 @@ class _PaymentScreenState extends State<PaymentScreen> {
             SizedBox(
               height: 400,
               child: ListView.builder(
-                  itemCount: paymentOptions.length,
-                  itemBuilder: (context, index) {
-                    final paymentOption = paymentOptions[index];
-                    print(paymentOption['image']);
-                    return PaymentCard(
-                      image: paymentOption['image'],
-                      title: paymentOption['title'],
-                      value: paymentOption['value'],
-                    );
-                  }),
+                itemCount: paymentOptions.length,
+                itemBuilder: (context, index) {
+                  final paymentOption = paymentOptions[index];
+                  print(paymentOption['image']);
+                  return PaymentCard(
+                    image: paymentOption['image'],
+                    title: paymentOption['title'],
+                    value: paymentOption['value'],
+                  );
+                },
+              ),
             )
           ],
         ),
@@ -92,7 +93,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
         child: SizedBox(
           height: 50,
           child: ElevatedButton(
-            onPressed:  () => Get.toNamed(AppRoutes.review),
+            onPressed: () => Get.toNamed(AppRoutes.appointment_detail),
             child: Text(
               "Next",
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),

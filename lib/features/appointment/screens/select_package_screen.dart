@@ -8,7 +8,6 @@ import 'package:medoc_patient_app/common/utils/text_style.dart';
 import 'package:medoc_patient_app/routes.dart';
 import 'package:medoc_patient_app/features/appointment/controllers/appointment_controller.dart';
 
-
 class DropdownController extends GetxController {
   RxString selectedValue = RxString('1');
 
@@ -44,7 +43,7 @@ class _PackageScreenState extends State<PackageScreen> {
         ),
       ),
       DropdownMenuItem(
-        value: '2',
+        value: '45 ',
         child: Row(
           children: [
             Icon(
@@ -60,7 +59,7 @@ class _PackageScreenState extends State<PackageScreen> {
         ),
       ),
       DropdownMenuItem(
-        value: '3',
+        value: '60',
         child: Row(
           children: [
             Icon(
@@ -132,13 +131,13 @@ class _PackageScreenState extends State<PackageScreen> {
               SizedBox(
                 height: 45,
                 child: DropdownButtonFormField<String>(
-                  
                   elevation: 0,
                   value: dropdownController.selectedValue.value,
                   items: dropdownItems,
                   onChanged: (value) {
                     dropdownController.setSelectedValue(value!);
                     print(value);
+                    _bookingController.setDuration(value);
                   },
                   decoration: InputDecoration(
                     filled: true,
@@ -282,7 +281,6 @@ class _PackageCardState extends State<PackageCard> {
           ),
         ],
       ),
-      
       trailing: Obx(
         () => Radio<Package>(
           value: widget.value,
@@ -293,7 +291,6 @@ class _PackageCardState extends State<PackageCard> {
         ),
       ),
     );
-  
   }
 }
 

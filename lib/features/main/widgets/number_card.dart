@@ -5,7 +5,7 @@ import 'package:medoc_patient_app/common/utils/text_style.dart';
 
 class NumberCard extends StatelessWidget {
   final String label;
-  final String value;
+  final value;
 
   const NumberCard({
     Key? key,

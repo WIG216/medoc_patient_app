@@ -9,7 +9,6 @@ import 'package:medoc_patient_app/routes.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 import 'package:medoc_patient_app/features/appointment/controllers/appointment_controller.dart';
 
-
 class RescheduleAppointment extends StatefulWidget {
   const RescheduleAppointment({super.key});
 
@@ -18,15 +17,23 @@ class RescheduleAppointment extends StatefulWidget {
 }
 
 class _RescheduleAppointmentState extends State<RescheduleAppointment> {
-    BookingController _bookingController = Get.find();
+  BookingController _bookingController = Get.find();
 
-    List Time = ["9:00AM", "10:00AM", "11:30AM", "12:00PM", "1:00PM"];
-     _onSelectionChanged(DateRangePickerSelectionChangedArgs args) {
+  List Time = ["9:00AM", "10:00AM", "11:30AM", "12:00PM", "1:00PM"];
+  _onSelectionChanged(DateRangePickerSelectionChangedArgs args) {
     _bookingController.setSelectedDate(args.value);
   }
 
   _onSelected(selectedIndex) {
     _bookingController.setActiveIndex(selectedIndex);
+  }
+
+  void _onSubmit() {
+    _bookingController.updateAppointment(
+      context: context,
+      selectedDate: _bookingController.selectedDate.value!,
+      time: _bookingController.choosenTime.value,
+    );
   }
 
   @override
@@ -66,7 +73,7 @@ class _RescheduleAppointmentState extends State<RescheduleAppointment> {
           ),
         ),
       ),
-    body: Obx(() {
+      body: Obx(() {
         final selectedDate = _bookingController.selectedDate.value;
         final activeIndex = _bookingController.activeIndex.value;
         return Padding(
@@ -128,8 +135,7 @@ class _RescheduleAppointmentState extends State<RescheduleAppointment> {
           ),
         );
       }),
-     
-    bottomNavigationBar: Padding(
+      bottomNavigationBar: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 12.0,
           vertical: 20,
@@ -137,9 +143,9 @@ class _RescheduleAppointmentState extends State<RescheduleAppointment> {
         child: SizedBox(
           height: 50,
           child: ElevatedButton(
-            onPressed: () => Get.back(),
+            onPressed: _onSubmit,
             child: Text(
-              "Submit",
+              "Next",
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
             ),
             style: ElevatedButton.styleFrom(
@@ -152,7 +158,6 @@ class _RescheduleAppointmentState extends State<RescheduleAppointment> {
           ),
         ),
       ),
-    
     );
   }
 }

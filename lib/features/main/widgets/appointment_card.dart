@@ -1,15 +1,37 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:medoc_patient_app/common/utils/colors.dart';
 import 'package:medoc_patient_app/common/utils/text_style.dart';
 import 'package:medoc_patient_app/features/main/widgets/schedule_card.dart';
 
-class AppointmentCard extends StatelessWidget {
+class AppointmentCard extends StatefulWidget {
+  final String doctorName, appointmentTime, appointmentDate;
+
   final void Function() onTap;
 
   const AppointmentCard({
     Key? key,
     required this.onTap,
+    required this.doctorName,
+    required this.appointmentTime,
+    required this.appointmentDate,
   }) : super(key: key);
+
+  @override
+  State<AppointmentCard> createState() => _AppointmentCardState();
+}
+
+class _AppointmentCardState extends State<AppointmentCard> {
+  late Future<DocumentSnapshot<Map<String, dynamic>>> getName;
+
+  @override
+  initState() {
+    super.initState();
+    getName = FirebaseFirestore.instance
+        .collection("doctors")
+        .doc(widget.doctorName)
+        .get();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,77 +39,94 @@ class AppointmentCard extends StatelessWidget {
       children: [
         Container(
           width: double.infinity,
+          margin: const EdgeInsets.symmetric(horizontal: 8),
           decoration: BoxDecoration(
             color: primaryColor,
             borderRadius: BorderRadius.circular(10),
           ),
           child: InkWell(
-            onTap: onTap,
+            onTap: widget.onTap,
             child: Padding(
               padding: const EdgeInsets.all(20),
               child: Column(
                 children: [
                   Row(
                     children: [
-                      CircleAvatar(
-                        backgroundImage: AssetImage('assets/doctor01.jpeg'),
+                      FutureBuilder(
+                        future: getName,
+                        builder: (context, snapshot) {
+                          if (snapshot.hasData) {
+                            return CircleAvatar(
+                              backgroundImage: AssetImage(
+                                snapshot.data?.data()?['profilePic'],
+                              ),
+                            );
+                           
+                          }
+
+                          return Container();
+                        },
                       ),
-                      SizedBox(
+                      // CircleAvatar(
+                      //   backgroundImage: AssetImage(widget.imagePath),
+                      // ),
+                      const SizedBox(
                         width: 10,
                       ),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Dr.Muhammed Syahid',
-                              style: TextStyle(color: Colors.white)),
-                          SizedBox(
+                          FutureBuilder(
+                            future: getName,
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                return Text(
+                                  snapshot.data?.data()?['name'],
+                                  style: const TextStyle(color: Colors.white),
+                                );
+                              }
+
+                              return Container();
+                            },
+                          ),
+                          const SizedBox(
                             height: 2,
                           ),
-                          Text(
-                            'Dental Specialist',
-                            style: subtitleStyle,
-                            // style: TextStyle(color: Color(MyColors.text01)),
+                          FutureBuilder(
+                            future: getName,
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                return Text(
+                                  snapshot.data?.data()?['specialist'],
+                                  style: const TextStyle(color: Colors.white),
+                                );
+                              }
+
+                              return Container();
+                            },
                           ),
+                          // Text(
+                          //   widget.specialist,
+                          //   style: subtitleStyle,
+                          //   // style: TextStyle(color: Color(MyColors.text01)),
+                          // ),
                         ],
                       ),
                     ],
                   ),
-                 
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
-                  ScheduleCard(),
+                  ScheduleCard(
+                    appointmentDate: widget.appointmentDate,
+                    appointmentTime: widget.appointmentTime,
+                  ),
                 ],
               ),
             ),
           ),
         ),
-        // Container(
-        //   margin: EdgeInsets.symmetric(horizontal: 20),
-        //   width: double.infinity,
-        //   height: 10,
-        //   decoration: BoxDecoration(
-        //     color: Color(0xFF5b99a3),
-        //     borderRadius: BorderRadius.only(
-        //       bottomRight: Radius.circular(10),
-        //       bottomLeft: Radius.circular(10),
-        //     ),
-        //   ),
-        // ),
-        // Container(
-        //   margin: EdgeInsets.symmetric(horizontal: 40),
-        //   width: double.infinity,
-        //   height: 10,
-        //   decoration: BoxDecoration(
-        //     color: Color(0xFFa1c5cb),
-        //     borderRadius: BorderRadius.only(
-        //       bottomRight: Radius.circular(10),
-        //       bottomLeft: Radius.circular(10),
-        //     ),
-        //   ),
-        // ),
-      
       ],
     );
   }

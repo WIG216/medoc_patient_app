@@ -1,0 +1,5 @@
+
+enum InputMode {
+  text,
+  voice,
+}

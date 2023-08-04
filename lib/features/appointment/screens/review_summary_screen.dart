@@ -1,13 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:medoc_patient_app/common/utils/colors.dart';
 import 'package:medoc_patient_app/common/utils/gap.dart';
 import 'package:medoc_patient_app/common/utils/text_style.dart';
+import 'package:medoc_patient_app/features/appointment/controllers/appointment_controller.dart';
+import 'package:medoc_patient_app/features/main/controllers/appointment_controller.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
-class ReviewSummaryScreen extends StatelessWidget {
+class ReviewSummaryScreen extends StatefulWidget {
   const ReviewSummaryScreen({super.key});
 
+  @override
+  State<ReviewSummaryScreen> createState() => _ReviewSummaryScreenState();
+}
+
+class _ReviewSummaryScreenState extends State<ReviewSummaryScreen> {
   // Define a function to show the modal dialog
   void _showModalDialog(BuildContext context) {
     showDialog(
@@ -73,7 +82,7 @@ class ReviewSummaryScreen extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: Get.back,
+                onPressed: onSubmit,
                 // onPressed: (){Navigator.of(context).pop();},
                 child: Text(
                   "View Appointment",
@@ -215,8 +224,33 @@ class ReviewSummaryScreen extends StatelessWidget {
     );
   }
 
+  BookingController _bookingController = Get.find();
+
+  onSubmit() {
+    _bookingController.createAppointment(
+      context: context,
+      doctorId: _bookingController.doctorId.value,
+      selectedDuration: _bookingController.selectedDuration.value,
+      selectedDate: _bookingController.selectedDate.value!,
+      selectedPackage: _bookingController.selectedPackage.value.toString(),
+      selectedPayment: _bookingController.selectedPayment.value.toString(),
+      time: _bookingController.choosenTime.value,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    final DateTime myDate = _bookingController.selectedDate.value!;
+    final DateFormat formatter = DateFormat.yMMMEd('en_US');
+
+    final String formattedDate = formatter.format(myDate);
+
+    final package = _bookingController.selectedPackage.value.toString();
+    final selectedPackage = package.split('.').last;
+
+    final payment = _bookingController.selectedPayment.value.toString();
+    final selectedPayment = payment.split('.').last;
+
     return Scaffold(
       backgroundColor: scaffoldBgColor,
       appBar: AppBar(
@@ -327,8 +361,11 @@ class ReviewSummaryScreen extends StatelessWidget {
                         style: bodyStyle.copyWith(color: subtitleColor),
                       ),
                       Text(
-                        "Dec 23, 2023 | 10:00AM",
-                        style: bodyStyle.copyWith(fontWeight: FontWeight.w500, fontSize: 13,),
+                        formattedDate + " | 10:00AM",
+                        style: bodyStyle.copyWith(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 13,
+                        ),
                       )
                     ],
                   ),
@@ -341,8 +378,11 @@ class ReviewSummaryScreen extends StatelessWidget {
                         style: bodyStyle.copyWith(color: subtitleColor),
                       ),
                       Text(
-                        "Messaging",
-                        style: bodyStyle.copyWith(fontWeight: FontWeight.w500, fontSize: 13,),
+                        selectedPackage,
+                        style: bodyStyle.copyWith(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 13,
+                        ),
                       )
                     ],
                   ),
@@ -355,8 +395,11 @@ class ReviewSummaryScreen extends StatelessWidget {
                         style: bodyStyle.copyWith(color: subtitleColor),
                       ),
                       Text(
-                        "30 minutes",
-                        style: bodyStyle.copyWith(fontWeight: FontWeight.w500, fontSize: 13,),
+                        _bookingController.selectedDuration.value,
+                        style: bodyStyle.copyWith(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 13,
+                        ),
                       )
                     ],
                   ),
@@ -382,7 +425,10 @@ class ReviewSummaryScreen extends StatelessWidget {
                       ),
                       Text(
                         "1000 CFA",
-                        style: bodyStyle.copyWith(fontWeight: FontWeight.w500, fontSize: 13,),
+                        style: bodyStyle.copyWith(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 13,
+                        ),
                       ),
                     ],
                   ),
@@ -396,7 +442,10 @@ class ReviewSummaryScreen extends StatelessWidget {
                       ),
                       Text(
                         "1 * 1000 CFA",
-                        style: bodyStyle.copyWith(fontWeight: FontWeight.w500, fontSize: 13,),
+                        style: bodyStyle.copyWith(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 13,
+                        ),
                       ),
                     ],
                   ),
@@ -418,7 +467,10 @@ class ReviewSummaryScreen extends StatelessWidget {
                       ),
                       Text(
                         "1000 CFA",
-                        style: bodyStyle.copyWith(fontWeight: FontWeight.w500, fontSize: 13,),
+                        style: bodyStyle.copyWith(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 13,
+                        ),
                       ),
                     ],
                   ),
@@ -443,7 +495,8 @@ class ReviewSummaryScreen extends StatelessWidget {
                 ),
               ),
               title: Text(
-                "MTN",
+                selectedPayment,
+                // "MTN",
                 style: smallHeaderStyle.copyWith(fontWeight: FontWeight.w500),
               ),
               trailing: TextButton(

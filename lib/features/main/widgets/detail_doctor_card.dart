@@ -4,8 +4,9 @@ import 'package:medoc_patient_app/common/utils/gap.dart';
 import 'package:medoc_patient_app/common/utils/text_style.dart';
 
 class DetailDoctorCard extends StatelessWidget {
+  final String doctorName, speciality;
   const DetailDoctorCard({
-    Key? key,
+    Key? key, required this.doctorName, required this.speciality,
   }) : super(key: key);
 
   @override
@@ -28,7 +29,7 @@ class DetailDoctorCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Dr. Josua Simorangkir',
+                      doctorName,
                       style: smallHeaderStyle,
                     //   style: TextStyle(
                     //       color: Color(MyColors.header01),
@@ -36,7 +37,7 @@ class DetailDoctorCard extends StatelessWidget {
                     ),
                     8.height,
                     Text(
-                      'Heart Specialist',
+                      speciality,
                       style: subtitleStyle.copyWith(fontWeight: FontWeight.w500,),
                       // style: TextStyle(
                       //   color: Color(MyColors.grey02),

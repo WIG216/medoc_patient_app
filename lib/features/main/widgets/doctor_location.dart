@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import "package:latlong2/latlong.dart" as latLng;
 
-
 class DoctorLocation extends StatelessWidget {
   const DoctorLocation({
     Key? key,
@@ -17,15 +16,15 @@ class DoctorLocation extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
         child: FlutterMap(
           options: MapOptions(
-            center: latLng.LatLng(51.5, -0.09),
+            center: latLng.LatLng(4.080807, 9.771714),
             zoom: 13.0,
           ),
-          layers: [
-            TileLayerOptions(
-              urlTemplate: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-              subdomains: ['a', 'b', 'c'],
-            ),
-          ],
+          // layers: [
+          //   TileLayerOptions(
+          //     urlTemplate: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+          //     subdomains: ['a', 'b', 'c'],
+          //   ),
+          // ],
         ),
       ),
     );

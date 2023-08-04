@@ -39,7 +39,7 @@ class DoctorCard extends StatelessWidget {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
                   image: DecorationImage(
-                    image: AssetImage(imagePath),
+                    image: NetworkImage(imagePath),
                     // fit: BoxFi.t.cover,
                   )),
               // child: Image.asset("assets/images/doc-1.jpg", height: 150, width: 100,),

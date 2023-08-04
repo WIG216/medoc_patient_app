@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:medoc_patient_app/common/utils/colors.dart';
 import 'package:medoc_patient_app/common/utils/gap.dart';
+import 'package:medoc_patient_app/common/utils/image_picker.dart';
 import 'package:medoc_patient_app/features/auth/controllers/auth_controller.dart';
 import 'package:medoc_patient_app/features/auth/widgets/input_field.dart';
 import 'package:medoc_patient_app/features/auth/widgets/phone_field.dart';
@@ -18,6 +21,7 @@ class _UserInformationScreenState extends State<UserInformationScreen> {
   final AuthController authController = Get.find();
   final _formKey = GlobalKey<FormState>();
   String? selectedValue = null;
+  File? image;
 
   final usernameController = TextEditingController();
   final emailController = TextEditingController();
@@ -28,11 +32,16 @@ class _UserInformationScreenState extends State<UserInformationScreen> {
   final emergencyContactController = TextEditingController();
   final emergencyContactNameController = TextEditingController();
 
+  void selectImage() async {
+    image = await pickImageFromGallery(context);
+    setState(() {});
+  }
+
   void _onValidation() {
     if (_formKey.currentState!.validate()) {
       DateTime dateOfBirth = DateTime.parse(dobController.text);
       double weightConverter = double.parse(weightController.text);
-      
+
       authController.saveUserDataToFirebase(
         context,
         usernameController.text,
@@ -44,6 +53,7 @@ class _UserInformationScreenState extends State<UserInformationScreen> {
         weightConverter,
         authController.phoneNumber.value,
         dateOfBirth,
+        image,
       );
 
       List userData = [
@@ -56,6 +66,7 @@ class _UserInformationScreenState extends State<UserInformationScreen> {
         weightConverter,
         authController.phoneNumber.value,
         dateOfBirth,
+        image
       ];
       print(userData);
     }
@@ -163,7 +174,32 @@ class _UserInformationScreenState extends State<UserInformationScreen> {
                       ],
                     ),
                   ),
+                  image == null
+                      ? const CircleAvatar(
+                          backgroundImage: NetworkImage(
+                            'https://png.pngitem.com/pimgs/s/649-6490124_katie-notopoulos-katienotopoulos-i-write-about-tech-round.png',
+                          ),
+                          radius: 64,
+                        )
+                      : CircleAvatar(
+                          backgroundImage: FileImage(
+                            image!,
+                          ),
+                          radius: 64,
+                        ),
+                  Positioned(
+                    bottom: -10,
+                    left: 80,
+                    child: IconButton(
+                      onPressed: selectImage,
+                      icon: const Icon(
+                        Icons.add_a_photo,
+                      ),
+                    ),
+                  ),
+
                   30.height,
+
                   // username
                   Text(
                     "Name",

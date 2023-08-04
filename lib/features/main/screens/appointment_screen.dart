@@ -255,7 +255,7 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
                                       borderRadius: BorderRadius.circular(10),
                                     ),
                                   ),
-                                  onPressed: ()=> Get.toNamed(AppRoutes.appointment),
+                                  onPressed: ()=> print("object"),
                                 ),
                               )
                             ],

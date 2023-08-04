@@ -3,8 +3,11 @@ import 'package:medoc_patient_app/common/utils/colors.dart';
 import 'package:medoc_patient_app/common/utils/gap.dart';
 
 class ScheduleCard extends StatelessWidget {
+  final String appointmentDate, appointmentTime;
   const ScheduleCard({
     Key? key,
+    required this.appointmentDate,
+    required this.appointmentTime,
   }) : super(key: key);
 
   @override
@@ -18,7 +21,7 @@ class ScheduleCard extends StatelessWidget {
       padding: EdgeInsets.all(12),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
-        children:  [
+        children: [
           Icon(
             Icons.calendar_today,
             color: whiteColor,
@@ -26,7 +29,7 @@ class ScheduleCard extends StatelessWidget {
           ),
           5.width,
           Text(
-            'Mon, July 29',
+            appointmentDate,
             style: TextStyle(color: whiteColor),
           ),
           20.width,
@@ -38,7 +41,7 @@ class ScheduleCard extends StatelessWidget {
           5.width,
           Flexible(
             child: Text(
-              '11:00 ~ 12:10',
+              appointmentTime,
               style: TextStyle(color: whiteColor),
             ),
           ),

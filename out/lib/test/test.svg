@@ -1,0 +1,863 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="173px" preserveAspectRatio="none" style="width:352px;height:173px;background:#000000;" version="1.1" viewBox="0 0 352 173" width="352px" zoomAndPan="magnify"><defs/><g><rect fill="#051A14" height="1" style="stroke:#051A14;stroke-width:1.0;" width="1" x="0" y="0"/><text fill="#33FF02" font-family="sans-serif" font-size="12" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="107" x="5" y="17">PlantUML 1.2022.7</text><text fill="#33FF02" font-family="sans-serif" font-size="12" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="3" x="5" y="32.0938"> </text><text fill="#33FF02" font-family="sans-serif" font-size="12" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="337" x="5" y="47.1875">&lt;b&gt;This version of PlantUML is 327 days old, so you should</text><text fill="#33FF02" font-family="sans-serif" font-size="12" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="338" x="5" y="62.2813">&lt;b&gt;consider upgrading from https://plantuml.com/download</text><rect fill="#33FF02" height="22.6094" style="stroke:#33FF02;stroke-width:1.0;" width="149" x="5" y="73.375"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="147" x="6" y="88.375">[From string (line 2) ]</text><text fill="#33FF02" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="4" x="5" y="109.9844"> </text><text fill="#33FF02" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="71" x="5" y="127.5938">@startuml</text><text fill="#33FF02" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" text-decoration="wavy underline" textLength="204" x="13" y="145.2031">{+Stream&lt;Patient&gt; userData()</text><text fill="#FF0000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="95" x="9" y="162.8125">Syntax Error?</text><!--MD5=[a94e3454f3f77dc4276e0bdad55b57bd]
+@startuml
+  {+Stream<Patient> userData()
+  +void setUserState()
+}
+
+"medoc_patient_app::features::auth::repositories::auth_repositories.dart::AuthRepository" o- - "cloud_firestore::cloud_firestore.dart::FirebaseFirestore"
+"medoc_patient_app::features::auth::repositories::auth_repositories.dart::AuthRepository" o- - "firebase_auth::firebase_auth.dart::FirebaseAuth"
+
+class "medoc_patient_app::features::auth::screens::registration_screen.dart::RegistrationScreen" {    
+  +State<RegistrationScreen> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|- - "medoc_patient_app::features::auth::screens::registration_screen.dart::RegistrationScreen"
+
+class "medoc_patient_app::features::auth::screens::registration_screen.dart::_RegistrationScreenState" {
+  +AuthController authController
+  +TextEditingController mobileNumberController
+  +void sendPhoneNumber()
+  +Widget build()
+}
+
+"medoc_patient_app::features::auth::screens::registration_screen.dart::_RegistrationScreenState" o- - "medoc_patient_app::features::auth::controllers::auth_controller.dart::AuthController"
+"medoc_patient_app::features::auth::screens::registration_screen.dart::_RegistrationScreenState" o- - "flutter::src::widgets::editable_text.dart::TextEditingController"
+"flutter::src::widgets::framework.dart::State" <|- - "medoc_patient_app::features::auth::screens::registration_screen.dart::_RegistrationScreenState"
+
+class "medoc_patient_app::features::auth::screens::user_information_screen.dart::UserInformationScreen" {
+  +State<UserInformationScreen> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|- - "medoc_patient_app::features::auth::screens::user_information_screen.dart::UserInformationScreen"
+
+class "medoc_patient_app::features::auth::screens::user_information_screen.dart::_UserInformationScreenState" {
+  +AuthController authController
+  -GlobalKey<FormState> _formKey
+  +String? selectedValue
+  +TextEditingController usernameController
+  +TextEditingController emailController
+  +TextEditingController dobController
+  +TextEditingController genderController
+  +TextEditingController bloodGroupController
+  +TextEditingController weightController
+  +TextEditingController emergencyContactController
+  +TextEditingController emergencyContactNameController
+  +List<DropdownMenuItem<String>> dropdownItems
+  -void _onValidation()
+  +void storeUserData()
+  -dynamic _emailVerification()
+  -dynamic _usernameVerification()
+  +void datePicker()
+  +void initState()
+  +Widget build()
+}
+
+"medoc_patient_app::features::auth::screens::user_information_screen.dart::_UserInformationScreenState" o- - "medoc_patient_app::features::auth::controllers::auth_controller.dart::AuthController"
+"medoc_patient_app::features::auth::screens::user_information_screen.dart::_UserInformationScreenState" o- - "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"medoc_patient_app::features::auth::screens::user_information_screen.dart::_UserInformationScreenState" o- - "flutter::src::widgets::editable_text.dart::TextEditingController"
+"flutter::src::widgets::framework.dart::State" <|- - "medoc_patient_app::features::auth::screens::user_information_screen.dart::_UserInformationScreenState"
+
+class "medoc_patient_app::features::auth::screens::verification_screen.dart::VerificationScreen" {    
+  +State<VerificationScreen> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|- - "medoc_patient_app::features::auth::screens::verification_screen.dart::VerificationScreen"
+
+class "medoc_patient_app::features::auth::screens::verification_screen.dart::_VerificationScreenState" {
+  +AuthController authController
+  +dynamic verificationId
+  +TextEditingController pinController
+  +void dispose()
+  +void verifyOTP()
+  +Widget build()
+}
+
+"medoc_patient_app::features::auth::screens::verification_screen.dart::_VerificationScreenState" o- - "medoc_patient_app::features::auth::controllers::auth_controller.dart::AuthController"
+"medoc_patient_app::features::auth::screens::verification_screen.dart::_VerificationScreenState" o- - "flutter::src::widgets::editable_text.dart::TextEditingController"
+"flutter::src::widgets::framework.dart::State" <|- - "medoc_patient_app::features::auth::screens::verification_screen.dart::_VerificationScreenState"
+
+class "medoc_patient_app::features::auth::widgets::input_field.dart::InputField" {
+  +String hintText
+  +String? Function(String?)? validator
+  +dynamic Function(String)? onChange
+  +dynamic keyboardType
+  +TextEditingController? controller
+  +State<InputField> createState()
+}
+
+"medoc_patient_app::features::auth::widgets::input_field.dart::InputField" o- - "null::String Function(String)"
+"medoc_patient_app::features::auth::widgets::input_field.dart::InputField" o- - "null::dynamic Function(String)"
+"medoc_patient_app::features::auth::widgets::input_field.dart::InputField" o- - "flutter::src::widgets::editable_text.dart::TextEditingController"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|- - "medoc_patient_app::features::auth::widgets::input_field.dart::InputField"
+
+class "medoc_patient_app::features::auth::widgets::input_field.dart::_InputFieldState" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|- - "medoc_patient_app::features::auth::widgets::input_field.dart::_InputFieldState"
+
+class "medoc_patient_app::features::auth::widgets::phone_field.dart::NPhoneNumberInput" {
+  +dynamic Function(PhoneNumber)? onInputChanged
+  +String? Function(String?)? validator
+  +String? errorMessage
+  +PhoneNumber? initialValue
+  +TextEditingController? controller
+  +bool isEnabled
+  +Widget build()
+}
+
+"medoc_patient_app::features::auth::widgets::phone_field.dart::NPhoneNumberInput" o- - "null::dynamic Function(PhoneNumber)"
+"medoc_patient_app::features::auth::widgets::phone_field.dart::NPhoneNumberInput" o- - "null::String Function(String)"
+"medoc_patient_app::features::auth::widgets::phone_field.dart::NPhoneNumberInput" o- - "intl_phone_number_input::src::utils::phone_number.dart::PhoneNumber"
+"medoc_patient_app::features::auth::widgets::phone_field.dart::NPhoneNumberInput" o- - "flutter::src::widgets::editable_text.dart::TextEditingController"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|- - "medoc_patient_app::features::auth::widgets::phone_field.dart::NPhoneNumberInput"
+
+class "medoc_patient_app::features::doctor::controllers::doctor_controller.dart::DoctorController" {  
+  -DoctorRepository _repository
+  +RxList<Doctor> doctorsData
+  +void onInit()
+  +void fetchDoctors()
+}
+
+"medoc_patient_app::features::doctor::controllers::doctor_controller.dart::DoctorController" o- - "medoc_patient_app::features::doctor::repositories::doctor_repository.dart::DoctorRepository"
+"medoc_patient_app::features::doctor::controllers::doctor_controller.dart::DoctorController" o- - "get::get_rx::src::rx_types::rx_types.dart::RxList<Doctor>"
+"get::get_state_manager::src::simple::get_controllers.dart::GetxController" <|- - "medoc_patient_app::features::doctor::controllers::doctor_controller.dart::DoctorController"
+
+class "medoc_patient_app::features::doctor::repositories::doctor_repository.dart::DoctorRepository" { 
+  -FirebaseFirestore _firestore
+  +Stream<List<Doctor>> getDoctors()
+}
+
+"medoc_patient_app::features::doctor::repositories::doctor_repository.dart::DoctorRepository" o- - "cloud_firestore::cloud_firestore.dart::FirebaseFirestore"
+
+class "medoc_patient_app::features::main::controllers::appointment_controller.dart::AppointmentController" {
+  +RxString activeTime
+  +RxList<dynamic> feesInfo
+  +Rx<FilterStatus> status
+  +String filterStatus
+  +String morning
+  +void updateActiveTime()
+  +void updatedFeesInformation()
+  +void updateStatus()
+  +void onSubmit()
+}
+
+"medoc_patient_app::features::main::controllers::appointment_controller.dart::AppointmentController" o- - "get::get_rx::src::rx_types::rx_types.dart::RxString"
+"medoc_patient_app::features::main::controllers::appointment_controller.dart::AppointmentController" o- - "get::get_rx::src::rx_types::rx_types.dart::RxList<dynamic>"
+"medoc_patient_app::features::main::controllers::appointment_controller.dart::AppointmentController" o- - "get::get_rx::src::rx_types::rx_types.dart::Rx<FilterStatus>"
+"get::get_state_manager::src::simple::get_controllers.dart::GetxController" <|- - "medoc_patient_app::features::main::controllers::appointment_controller.dart::AppointmentController"
+
+class "medoc_patient_app::features::main::controllers::navigation_controller.dart::BottomNavigationController" {
+  +RxInt selectedIndex
+  +void onItemTapped()
+}
+
+"medoc_patient_app::features::main::controllers::navigation_controller.dart::BottomNavigationController" o- - "get::get_rx::src::rx_types::rx_types.dart::RxInt"
+"get::get_state_manager::src::simple::get_controllers.dart::GetxController" <|- - "medoc_patient_app::features::main::controllers::navigation_controller.dart::BottomNavigationController"
+
+class "medoc_patient_app::features::main::screens::all_doctors.dart::AllDoctors" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|- - "medoc_patient_app::features::main::screens::all_doctors.dart::AllDoctors"
+
+class "medoc_patient_app::features::main::screens::ambulance_screen.dart::AmbulanceScreen" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|- - "medoc_patient_app::features::main::screens::ambulance_screen.dart::AmbulanceScreen"
+
+class "medoc_patient_app::features::main::screens::appointment_screen.dart::AppointmentScreen" {      
+  +State<AppointmentScreen> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|- - "medoc_patient_app::features::main::screens::appointment_screen.dart::AppointmentScreen"
+
+class "medoc_patient_app::features::main::screens::appointment_screen.dart::_AppointmentScreenState" {  +FilterStatus status
+  -Alignment _alignment
+  +Widget build()
+}
+
+"medoc_patient_app::features::main::screens::appointment_screen.dart::_AppointmentScreenState" o- - "medoc_patient_app::features::main::screens::appointment_screen.dart::FilterStatus"
+"medoc_patient_app::features::main::screens::appointment_screen.dart::_AppointmentScreenState" o- - "flutter::src::painting::alignment.dart::Alignment"
+"flutter::src::widgets::framework.dart::State" <|- - "medoc_patient_app::features::main::screens::appointment_screen.dart::_AppointmentScreenState"
+
+class "medoc_patient_app::features::main::screens::appointment_screen.dart::FilterStatus" {
+  +int index
+  {static} +List<FilterStatus> values
+  {static} +FilterStatus Upcoming
+  {static} +FilterStatus Complete
+  {static} +FilterStatus Cancel
+}
+
+"medoc_patient_app::features::main::screens::appointment_screen.dart::FilterStatus" o- - "medoc_patient_app::features::main::screens::appointment_screen.dart::FilterStatus"
+"dart::core::Enum" <|- - "medoc_patient_app::features::main::screens::appointment_screen.dart::FilterStatus"
+
+class "medoc_patient_app::features::main::screens::doctor_detail_screen.dart::SliverDoctorDetail" {   
+  +State<SliverDoctorDetail> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|- - "medoc_patient_app::features::main::screens::doctor_detail_screen.dart::SliverDoctorDetail"
+
+class "medoc_patient_app::features::main::screens::doctor_detail_screen.dart::_SliverDoctorDetailState" {
+  +dynamic doctorId
+  -DoctorController _doctorController
+  -BookingController _bookingController
+  +Widget build()
+}
+
+"medoc_patient_app::features::main::screens::doctor_detail_screen.dart::_SliverDoctorDetailState" o- - 
+"medoc_patient_app::features::doctor::controllers::doctor_controller.dart::DoctorController"
+"medoc_patient_app::features::main::screens::doctor_detail_screen.dart::_SliverDoctorDetailState" o- - 
+"medoc_patient_app::features::appointment::controllers::appointment_controller.dart::BookingController"
+"flutter::src::widgets::framework.dart::State" <|- - "medoc_patient_app::features::main::screens::doctor_detail_screen.dart::_SliverDoctorDetailState"
+
+class "medoc_patient_app::features::main::screens::faq_screen.dart::FAQsScreen" {
+  +List<dynamic> questions
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|- - "medoc_patient_app::features::main::screens::faq_screen.dart::FAQsScreen"
+
+class "medoc_patient_app::features::main::screens::help_screen.dart::HelpingScreen" {
+  +TextEditingController textController
+  +Widget build()
+}
+
+"medoc_patient_app::features::main::screens::help_screen.dart::HelpingScreen" o- - "flutter::src::widgets::editable_text.dart::TextEditingController"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|- - "medoc_patient_app::features::main::screens::help_screen.dart::HelpingScreen"
+
+class "medoc_patient_app::features::main::screens::home_screen.dart::HomeScreen" {
+  +State<HomeScreen> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|- - "medoc_patient_app::features::main::screens::home_screen.dart::HomeScreen"
+
+class "medoc_patient_app::features::main::screens::home_screen.dart::_HomeScreenState" {
+  -DoctorController _doctorController
+  -BookingController _bookingController
+  +List<Map<dynamic, dynamic>> doctors
+  -Widget _buildShimmerList()
+  +Widget build()
+}
+
+"medoc_patient_app::features::main::screens::home_screen.dart::_HomeScreenState" o- - "medoc_patient_app::features::doctor::controllers::doctor_controller.dart::DoctorController"
+"medoc_patient_app::features::main::screens::home_screen.dart::_HomeScreenState" o- - "medoc_patient_app::features::appointment::controllers::appointment_controller.dart::BookingController"
+"flutter::src::widgets::framework.dart::State" <|- - "medoc_patient_app::features::main::screens::home_screen.dart::_HomeScreenState"
+
+class "medoc_patient_app::features::main::screens::hospitals_screen.dart::HospitalScreen" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|- - "medoc_patient_app::features::main::screens::hospitals_screen.dart::HospitalScreen"
+
+class "medoc_patient_app::features::main::screens::main.dart::MainPage" {
+  +State<MainPage> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|- - "medoc_patient_app::features::main::screens::main.dart::MainPage"
+
+class "medoc_patient_app::features::main::screens::main.dart::_MainPageState" {
+  +BottomNavigationController bottomNavigationController
+  -Widget _getPage()
+  +Widget build()
+}
+
+"medoc_patient_app::features::main::screens::main.dart::_MainPageState" o- - "medoc_patient_app::features::main::controllers::navigation_controller.dart::BottomNavigationController"
+"flutter::src::widgets::framework.dart::State" <|- - "medoc_patient_app::features::main::screens::main.dart::_MainPageState"
+
+class "medoc_patient_app::features::main::screens::medical_post_screen.dart::MedicalPostScreen" {     
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|- - "medoc_patient_app::features::main::screens::medical_post_screen.dart::MedicalPostScreen"
+
+class "medoc_patient_app::features::main::screens::online_appointment.dart::OnlineAppointment" {      
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|- - "medoc_patient_app::features::main::screens::online_appointment.dart::OnlineAppointment"
+
+class "medoc_patient_app::features::main::screens::pill_screen.dart::PillScreen" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|- - "medoc_patient_app::features::main::screens::pill_screen.dart::PillScreen"
+
+class "medoc_patient_app::features::main::screens::user_profile.dart::UserProfile" {
+  +List<Map<dynamic, dynamic>> listTiles
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|- - "medoc_patient_app::features::main::screens::user_profile.dart::UserProfile"
+
+class "medoc_patient_app::features::main::screens::user_profile.dart::ProfileListTile" {
+  +String title
+  +String trailing
+  +dynamic Function() onPressed
+  +IconData leadingIcon
+  +Widget build()
+}
+
+"medoc_patient_app::features::main::screens::user_profile.dart::ProfileListTile" o- - "null::dynamic Function()"
+"medoc_patient_app::features::main::screens::user_profile.dart::ProfileListTile" o- - "flutter::src::widgets::icon_data.dart::IconData"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|- - "medoc_patient_app::features::main::screens::user_profile.dart::ProfileListTile"
+
+class "medoc_patient_app::features::main::widgets::about_doctor_card.dart::AboutDoctor" {
+  +String title
+  +String desc
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|- - "medoc_patient_app::features::main::widgets::about_doctor_card.dart::AboutDoctor"
+
+class "medoc_patient_app::features::main::widgets::action_card.dart::ActionCard" {
+  +String text
+  +IconData icon
+  +dynamic Function()? onTap
+  +Widget build()
+}
+
+"medoc_patient_app::features::main::widgets::action_card.dart::ActionCard" o- - "flutter::src::widgets::icon_data.dart::IconData"
+"medoc_patient_app::features::main::widgets::action_card.dart::ActionCard" o- - "null::dynamic Function()"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|- - "medoc_patient_app::features::main::widgets::action_card.dart::ActionCard"
+
+class "medoc_patient_app::features::main::widgets::appointment_card.dart::AppointmentCard" {
+  +String specialist
+  +String doctorName
+  +String imagePath
+  +String appointmentTime
+  +String appointmentDate
+  +void Function() onTap
+  +Widget build()
+}
+
+"medoc_patient_app::features::main::widgets::appointment_card.dart::AppointmentCard" o- - "null::void Function()"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|- - "medoc_patient_app::features::main::widgets::appointment_card.dart::AppointmentCard"
+
+class "medoc_patient_app::features::main::widgets::category_icon.dart::CategoryIcons" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|- - "medoc_patient_app::features::main::widgets::category_icon.dart::CategoryIcons"
+
+class "medoc_patient_app::features::main::widgets::category_icon.dart::CategoryIcon" {
+  +IconData icon
+  +String text
+  +dynamic Function()? onTap
+  +Widget build()
+}
+
+"medoc_patient_app::features::main::widgets::category_icon.dart::CategoryIcon" o- - "flutter::src::widgets::icon_data.dart::IconData"
+"medoc_patient_app::features::main::widgets::category_icon.dart::CategoryIcon" o- - "null::dynamic Function()"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|- - "medoc_patient_app::features::main::widgets::category_icon.dart::CategoryIcon"
+
+class "medoc_patient_app::features::main::widgets::DateTimeCard.dart::DateTimeCard" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|- - "medoc_patient_app::features::main::widgets::DateTimeCard.dart::DateTimeCard"
+
+class "medoc_patient_app::features::main::widgets::detail_body.dart::DetailBody" {
+  +String location
+  +String doctorName
+  +String speciality
+  +int experience
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|- - "medoc_patient_app::features::main::widgets::detail_body.dart::DetailBody"
+
+class "medoc_patient_app::features::main::widgets::detail_doctor_card.dart::DetailDoctorCard" {       
+  +String doctorName
+  +String speciality
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|- - "medoc_patient_app::features::main::widgets::detail_doctor_card.dart::DetailDoctorCard"
+
+class "medoc_patient_app::features::main::widgets::doctor_card.dart::DoctorCard" {
+  +dynamic Function()? handleBook
+  +dynamic Function()? handleMessage
+  +String doctorName
+  +String doctorTitle
+  +String imagePath
+  +Widget build()
+}
+
+"medoc_patient_app::features::main::widgets::doctor_card.dart::DoctorCard" o- - "null::dynamic Function()"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|- - "medoc_patient_app::features::main::widgets::doctor_card.dart::DoctorCard"
+
+class "medoc_patient_app::features::main::widgets::doctor_info.dart::DoctorInfo" {
+  +int experience
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|- - "medoc_patient_app::features::main::widgets::doctor_info.dart::DoctorInfo"
+
+class "medoc_patient_app::features::main::widgets::doctor_location.dart::DoctorLocation" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|- - "medoc_patient_app::features::main::widgets::doctor_location.dart::DoctorLocation"
+
+class "medoc_patient_app::features::main::widgets::floating_action_button.dart::DiamondBorder" {      
+  +EdgeInsetsGeometry dimensions
+  +Path getInnerPath()
+  +Path getOuterPath()
+  +void paint()
+  +ShapeBorder scale()
+}
+
+"medoc_patient_app::features::main::widgets::floating_action_button.dart::DiamondBorder" o- - "flutter::src::painting::edge_insets.dart::EdgeInsetsGeometry"
+"flutter::src::painting::borders.dart::ShapeBorder" <|- - "medoc_patient_app::features::main::widgets::floating_action_button.dart::DiamondBorder"
+
+class "medoc_patient_app::features::main::widgets::number_card.dart::NumberCard" {
+  +String label
+  +dynamic value
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|- - "medoc_patient_app::features::main::widgets::number_card.dart::NumberCard"
+
+class "medoc_patient_app::features::main::widgets::schedule_card.dart::ScheduleCard" {
+  +String appointmentDate
+  +String appointmentTime
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|- - "medoc_patient_app::features::main::widgets::schedule_card.dart::ScheduleCard"
+
+class "medoc_patient_app::features::main::widgets::searched_doctor_card.dart::SearchedDoctorCard" {   
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|- - "medoc_patient_app::features::main::widgets::searched_doctor_card.dart::SearchedDoctorCard"
+
+class "medoc_patient_app::features::medical_bot::controllers::symptom_controller.dart::ChatController" {
+  +List<ChatMessage> messages
+  +TextEditingController textController
+  +RxBool isLoading
+  +dynamic sendMessage()
+  +dynamic fetchDiseaseInfo()
+}
+
+"medoc_patient_app::features::medical_bot::controllers::symptom_controller.dart::ChatController" o- - "flutter::src::widgets::editable_text.dart::TextEditingController"
+"medoc_patient_app::features::medical_bot::controllers::symptom_controller.dart::ChatController" o- - "get::get_rx::src::rx_types::rx_types.dart::RxBool"
+"get::get_state_manager::src::simple::get_controllers.dart::GetxController" <|- - "medoc_patient_app::features::medical_bot::controllers::symptom_controller.dart::ChatController"
+
+class "medoc_patient_app::features::medical_bot::controllers::symptom_controller.dart::ChatMessage" { 
+  +String message
+  +bool isMe
+}
+
+class "medoc_patient_app::features::medical_bot::repositories::symptom_repository.dart::ChatRepository" {
+  -ChatController _controller
+  +dynamic sendMessage()
+}
+
+"medoc_patient_app::features::medical_bot::repositories::symptom_repository.dart::ChatRepository" o- - 
+"medoc_patient_app::features::medical_bot::controllers::symptom_controller.dart::ChatController"
+
+class "medoc_patient_app::features::medical_bot::screens::chat_screen.dart::ChatScreen" {
+  +ChatController chatController
+  +Widget build()
+}
+
+"medoc_patient_app::features::medical_bot::screens::chat_screen.dart::ChatScreen" o- - "medoc_patient_app::features::medical_bot::controllers::symptom_controller.dart::ChatController"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|- - "medoc_patient_app::features::medical_bot::screens::chat_screen.dart::ChatScreen"
+
+class "medoc_patient_app::features::medical_bot::widgets::chat_bubble.dart::ChatBubble" {
+  +String message
+  +bool isMe
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|- - "medoc_patient_app::features::medical_bot::widgets::chat_bubble.dart::ChatBubble"
+
+class "medoc_patient_app::features::medical_bot::widgets::toggle_button.dart::ToggleButton" {
+  -void Function() _sendTextMessage
+  -void Function() _sendVoiceMessage
+  -InputMode _inputMode
+  -bool _isReplying
+  -bool _isListening
+  +State<ToggleButton> createState()
+}
+
+"medoc_patient_app::features::medical_bot::widgets::toggle_button.dart::ToggleButton" o- - "dart::ui::void Function()"
+"medoc_patient_app::features::medical_bot::widgets::toggle_button.dart::ToggleButton" o- - "medoc_patient_app::common::enum::input_mode.dart::InputMode"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|- - "medoc_patient_app::features::medical_bot::widgets::toggle_button.dart::ToggleButton"
+
+class "medoc_patient_app::features::medical_bot::widgets::toggle_button.dart::_ToggleButtonState" {   
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|- - "medoc_patient_app::features::medical_bot::widgets::toggle_button.dart::_ToggleButtonState"
+
+class "medoc_patient_app::features::medical_bot::widgets::typing_indicator.dart::TypingIndicator" {   
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|- - "medoc_patient_app::features::medical_bot::widgets::typing_indicator.dart::TypingIndicator"
+
+class "medoc_patient_app::features::onboarding::screens::screen_1.dart::Onboard1" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|- - "medoc_patient_app::features::onboarding::screens::screen_1.dart::Onboard1"
+
+class "medoc_patient_app::features::pharmacy::controllers::location_controller.dart::LocationController" {
+  +RxString currentAddress
+  +Rx<LatLng> currentPosition
+  +Rx<CameraPosition> cameraPosition
+  -dynamic _handleLocationPermission()
+  -dynamic _getCurrentPosition()
+  -dynamic _getAddressFromLatLng()
+  +void onInit()
+}
+
+"medoc_patient_app::features::pharmacy::controllers::location_controller.dart::LocationController" o- - "get::get_rx::src::rx_types::rx_types.dart::RxString"
+"medoc_patient_app::features::pharmacy::controllers::location_controller.dart::LocationController" o- - "get::get_rx::src::rx_types::rx_types.dart::Rx<LatLng>"
+"medoc_patient_app::features::pharmacy::controllers::location_controller.dart::LocationController" o- - "get::get_rx::src::rx_types::rx_types.dart::Rx<CameraPosition>"
+"get::get_state_manager::src::simple::get_controllers.dart::GetxController" <|- - "medoc_patient_app::features::pharmacy::controllers::location_controller.dart::LocationController"
+
+class "medoc_patient_app::features::pharmacy::controllers::map_controller.dart::MapController" {      
+  +RxBool isDataLoading
+  +RxBool isLoadingPolyline
+  +PolylinePoints polylinePoints
+  +RxMap<PolylineId, Polyline> polylines
+  +LocationController locationController
+  +RxSet<Polyline> polyline
+  +RxList<dynamic> pharmacies
+  +dynamic getPharmacies()
+  +dynamic makePolyline()
+  +dynamic getDirections()
+  +dynamic addPolyLine()
+  +void onInit()
+}
+
+"medoc_patient_app::features::pharmacy::controllers::map_controller.dart::MapController" o- - "get::get_rx::src::rx_types::rx_types.dart::RxBool"
+"medoc_patient_app::features::pharmacy::controllers::map_controller.dart::MapController" o- - "flutter_polyline_points::flutter_polyline_points.dart::PolylinePoints"
+"medoc_patient_app::features::pharmacy::controllers::map_controller.dart::MapController" o- - "get::get_rx::src::rx_types::rx_types.dart::RxMap<PolylineId, Polyline>"
+"medoc_patient_app::features::pharmacy::controllers::map_controller.dart::MapController" o- - "medoc_patient_app::features::pharmacy::controllers::location_controller.dart::LocationController"
+"medoc_patient_app::features::pharmacy::controllers::map_controller.dart::MapController" o- - "get::get_rx::src::rx_types::rx_types.dart::RxSet<Polyline>"
+"medoc_patient_app::features::pharmacy::controllers::map_controller.dart::MapController" o- - "get::get_rx::src::rx_types::rx_types.dart::RxList<dynamic>"
+"get::get_state_manager::src::simple::get_controllers.dart::GetxController" <|- - "medoc_patient_app::features::pharmacy::controllers::map_controller.dart::MapController"
+
+class "medoc_patient_app::features::pharmacy::controllers::search_controller.dart::SearchingController" {
+  +RxList<dynamic> phamacies
+  +RxBool isDataLoading
+  +dynamic seachRequest()
+  +dynamic search()
+  +void onInit()
+}
+
+"medoc_patient_app::features::pharmacy::controllers::search_controller.dart::SearchingController" o- - 
+"get::get_rx::src::rx_types::rx_types.dart::RxList<dynamic>"
+"medoc_patient_app::features::pharmacy::controllers::search_controller.dart::SearchingController" o- - 
+"get::get_rx::src::rx_types::rx_types.dart::RxBool"
+"get::get_state_manager::src::simple::get_controllers.dart::GetxController" <|- - "medoc_patient_app::features::pharmacy::controllers::search_controller.dart::SearchingController"
+
+class "medoc_patient_app::features::pharmacy::screens::map.dart::MapPage" {
+  +GoogleMapController mapController
+  +List<LatLng> polylineCoordinates
+  +Map<PolylineId, Polyline> polylines
+  -Set<Polyline> _polyline
+  +MapController mapsController
+  +LocationController locationController
+  -LatLng _center
+  -void _onMapCreated()
+  +Widget build()
+}
+
+"medoc_patient_app::features::pharmacy::screens::map.dart::MapPage" o- - "google_maps_flutter::google_maps_flutter.dart::GoogleMapController"
+"medoc_patient_app::features::pharmacy::screens::map.dart::MapPage" o- - "medoc_patient_app::features::pharmacy::controllers::map_controller.dart::MapController"
+"medoc_patient_app::features::pharmacy::screens::map.dart::MapPage" o- - "medoc_patient_app::features::pharmacy::controllers::location_controller.dart::LocationController"
+"medoc_patient_app::features::pharmacy::screens::map.dart::MapPage" o- - "google_maps_flutter_platform_interface::src::types::location.dart::LatLng"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|- - "medoc_patient_app::features::pharmacy::screens::map.dart::MapPage"
+
+class "medoc_patient_app::features::pharmacy::screens::menu_sheet.dart::MenuSheet" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|- - "medoc_patient_app::features::pharmacy::screens::menu_sheet.dart::MenuSheet"
+
+class "medoc_patient_app::features::pharmacy::screens::pharmarcy_main_sreen.dart::PharmarcyMainPage" {  +MapController mapController
+  +LocationController locationController
+  +void openBottomSheet()
+  +void openMenuBottomSheet()
+  +Widget build()
+}
+
+"medoc_patient_app::features::pharmacy::screens::pharmarcy_main_sreen.dart::PharmarcyMainPage" o- - "medoc_patient_app::features::pharmacy::controllers::map_controller.dart::MapController"
+"medoc_patient_app::features::pharmacy::screens::pharmarcy_main_sreen.dart::PharmarcyMainPage" o- - "medoc_patient_app::features::pharmacy::controllers::location_controller.dart::LocationController"       
+"flutter::src::widgets::framework.dart::StatelessWidget" <|- - "medoc_patient_app::features::pharmacy::screens::pharmarcy_main_sreen.dart::PharmarcyMainPage"
+
+class "medoc_patient_app::features::pharmacy::screens::searchSheet.dart::SearchSheet" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|- - "medoc_patient_app::features::pharmacy::screens::searchSheet.dart::SearchSheet"
+
+class "medoc_patient_app::features::pharmacy::widgets::history.dart::History" {
+  +SearchingController searchingController
+  +MapController mapsController
+  +Widget build()
+}
+
+"medoc_patient_app::features::pharmacy::widgets::history.dart::History" o- - "medoc_patient_app::features::pharmacy::controllers::search_controller.dart::SearchingController"
+"medoc_patient_app::features::pharmacy::widgets::history.dart::History" o- - "medoc_patient_app::features::pharmacy::controllers::map_controller.dart::MapController"
+"get::get_state_manager::src::simple::get_view.dart::GetView" <|- - "medoc_patient_app::features::pharmacy::widgets::history.dart::History"
+
+class "medoc_patient_app::features::pharmacy::widgets::pickup_drug_search.dart::PickupDrugSearch" {   
+  +RxString searchText
+  +SearchingController searchingController
+  +Widget build()
+}
+
+"medoc_patient_app::features::pharmacy::widgets::pickup_drug_search.dart::PickupDrugSearch" o- - "get::get_rx::src::rx_types::rx_types.dart::RxString"
+"medoc_patient_app::features::pharmacy::widgets::pickup_drug_search.dart::PickupDrugSearch" o- - "medoc_patient_app::features::pharmacy::controllers::search_controller.dart::SearchingController"
+"get::get_state_manager::src::simple::get_view.dart::GetView" <|- - "medoc_patient_app::features::pharmacy::widgets::pickup_drug_search.dart::PickupDrugSearch"
+
+class "medoc_patient_app::features::settings::screens::profile_screen.dart::UserProfileScreen" {      
+  +State<UserProfileScreen> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|- - "medoc_patient_app::features::settings::screens::profile_screen.dart::UserProfileScreen"
+
+class "medoc_patient_app::features::settings::screens::profile_screen.dart::_UserProfileScreenState" {  +void authenticateUser()
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|- - "medoc_patient_app::features::settings::screens::profile_screen.dart::_UserProfileScreenState"
+
+class "medoc_patient_app::firebase_options.dart::DefaultFirebaseOptions" {
+  {static} +FirebaseOptions web
+  {static} +FirebaseOptions android
+  {static} +FirebaseOptions ios
+  {static} +FirebaseOptions macos
+  {static} +FirebaseOptions currentPlatform
+}
+
+"medoc_patient_app::firebase_options.dart::DefaultFirebaseOptions" o- - "firebase_core_platform_interface::firebase_core_platform_interface.dart::FirebaseOptions"
+
+class "medoc_patient_app::logs.dart::LogController" {
+  +void addLog()
+}
+
+"flutter::src::foundation::change_notifier.dart::ValueNotifier" <|- - "medoc_patient_app::logs.dart::LogController"
+
+class "medoc_patient_app::main.dart::MyApp" {
+  +GlobalKey<NavigatorState> navigatorKey
+  +State<MyApp> createState()
+}
+
+"medoc_patient_app::main.dart::MyApp" o- - "flutter::src::widgets::framework.dart::GlobalKey<NavigatorState>"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|- - "medoc_patient_app::main.dart::MyApp"    
+
+class "medoc_patient_app::main.dart::_MyAppState" {
+  +BuildContext contextQuery()
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|- - "medoc_patient_app::main.dart::_MyAppState"       
+
+class "medoc_patient_app::models::appointment_model.dart::Appointment" {
+  +String doctorId
+  +String patientId
+  +String appointmentId
+  +DateTime selectedDate
+  +String time
+  +String selectedDuration
+  +String selectedPackage
+  +PatientDetail patientDetail
+  +String selectedPayment
+  +RxString status
+  +Map<String, dynamic> toMap()
+}
+
+"medoc_patient_app::models::appointment_model.dart::Appointment" o- - "medoc_patient_app::models::patient_detail_model.dart::PatientDetail"
+"medoc_patient_app::models::appointment_model.dart::Appointment" o- - "get::get_rx::src::rx_types::rx_types.dart::RxString"
+
+class "medoc_patient_app::models::chat_message_model.dart::ChatMessage" {
+  +String messageContent
+  +String messageType
+}
+
+class "medoc_patient_app::models::chat_model.dart::ChatModel" {
+  +String id
+  +String message
+  +bool isMe
+}
+
+class "medoc_patient_app::models::chat_users_model.dart::ChatUsers" {
+  +String name
+  +String messageText
+  +String imageURL
+  +String time
+}
+
+class "medoc_patient_app::models::disease_info.dart::DiseaseInfo" {
+  +String description
+  +String disease
+  +String precautions
+}
+
+class "medoc_patient_app::models::doctor_model.dart::Doctor" {
+  +String name
+  +DateTime? dateOfBirth
+  +String gender
+  +String phoneNumber
+  +String emailAddress
+  +String address
+  +String medicalLicense
+  +String speciality
+  +String qualifications
+  +int yearsOfExperience
+  +String clinicName
+  +String clinicAddress
+  +String clinicContact
+  +List<String> workDays
+  +List<String> workHours
+  +String uid
+  +bool isOnline
+  +Map<String, dynamic> toMap()
+}
+
+class "medoc_patient_app::models::patient_detail_model.dart::PatientDetail" {
+  +String patientName
+  +String patientGender
+  +int patientAge
+  +String patientProblem
+  +Map<String, dynamic> toMap()
+  +Map<String, dynamic> toJson()
+}
+
+class "medoc_patient_app::models::symptom_model.dart::Symptom" {
+  +String disease
+  +String description
+  +String precaution
+}
+
+class "medoc_patient_app::models::user_info_model.dart::ZegoInfo" {
+  +String id
+  +String name
+  +bool isEmpty
+}
+
+class "medoc_patient_app::models::user_model.dart::Patient" {
+  +String fullName
+  +DateTime? dateOfBirth
+  +String gender
+  +String phoneNumber
+  +String emailAddress
+  +double weight
+  +String bloodGroup
+  +String emergencyContact
+  +String emergencyContactName
+  +String uid
+  +bool isOnline
+  +Map<String, dynamic> toMap()
+}
+
+class "medoc_patient_app::routes.dart::AppRoutes" {
+  {static} +String home
+  {static} +String registration
+  {static} +String verifyPhoneNumber
+  {static} +String map_page
+  {static} +String menu_sheet
+  {static} +String search_sheet
+  {static} +String verification_screen
+  {static} +String user_information_screen
+  {static} +String doctor_detail
+  {static} +String hospitals
+  {static} +String appointments
+  {static} +String ambulance
+  {static} +String pill
+  {static} +String medical_post
+  {static} +String help
+  {static} +String faqs
+  {static} +String my_appointment
+  {static} +String appointment_screen
+  {static} +String reschedule_appointment_screen_0
+  {static} +String reschedule_appointment_screen
+  {static} +String patient_detail
+  {static} +String payment
+  {static} +String review
+  {static} +String package
+  {static} +List<GetPage<dynamic>> routes
+}
+
+class "medoc_patient_app::test_ui.dart::ViewAppointment" {
+  +State<ViewAppointment> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|- - "medoc_patient_app::test_ui.dart::ViewAppointment"
+
+class "medoc_patient_app::test_ui.dart::_ViewAppointmentState" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|- - "medoc_patient_app::test_ui.dart::_ViewAppointmentState"
+
+class "medoc_patient_app::zegocloud::call.dart::Call" {
+  +State<Call> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|- - "medoc_patient_app::zegocloud::call.dart::Call"
+
+class "medoc_patient_app::zegocloud::call.dart::_CallState" {
+  +TextEditingController callIdTextCtrl
+  +void requestMicrophoneAndCameraPermissions()
+  +void initState()
+  +Widget build()
+}
+
+"medoc_patient_app::zegocloud::call.dart::_CallState" o- - "flutter::src::widgets::editable_text.dart::TextEditingController"
+"flutter::src::widgets::framework.dart::State" <|- - "medoc_patient_app::zegocloud::call.dart::_CallState"
+
+class "medoc_patient_app::zegocloud::call.dart::CallPage" {
+  +String CallId
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|- - "medoc_patient_app::zegocloud::call.dart::CallPage"
+
+class "medoc_patient_app::zegocloud::home.dart::HomePage" {
+  +State<HomePage> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|- - "medoc_patient_app::zegocloud::home.dart::HomePage"
+
+class "medoc_patient_app::zegocloud::home.dart::_HomePageState" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|- - "medoc_patient_app::zegocloud::home.dart::_HomePageState"
+
+class "medoc_patient_app::zegocloud::login_page.dart::LoginPage" {
+  +State<LoginPage> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|- - "medoc_patient_app::zegocloud::login_page.dart::LoginPage"
+
+class "medoc_patient_app::zegocloud::login_page.dart::_LoginPageState" {
+  +TextEditingController userId
+  +TextEditingController username
+  +Widget build()
+}
+
+"medoc_patient_app::zegocloud::login_page.dart::_LoginPageState" o- - "flutter::src::widgets::editable_text.dart::TextEditingController"
+"flutter::src::widgets::framework.dart::State" <|- - "medoc_patient_app::zegocloud::login_page.dart::_LoginPageState"
+
+
+@enduml
+
+PlantUML version 1.2022.7(Mon Aug 22 06:01:30 GMT-11:00 2022)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: Cp1252
+Language: en
+Country: US
+--></g></svg>

@@ -3,12 +3,12 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
-  agora_rtc_engine
   audioplayers_windows
   awesome_notifications
+  file_selector_windows
   firebase_core
   geolocator_windows
-  iris_method_channel
+  local_auth_windows
   permission_handler_windows
   smart_auth
   zego_express_engine
