@@ -39,7 +39,6 @@ void main() async {
       );
     },
   );
-  FirebaseAuth.instance.signOut();
 
   runApp(MyApp(navigatorKey: navigatorKey));
 }

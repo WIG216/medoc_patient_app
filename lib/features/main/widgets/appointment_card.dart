@@ -93,19 +93,19 @@ class _AppointmentCardState extends State<AppointmentCard> {
                           const SizedBox(
                             height: 2,
                           ),
-                          FutureBuilder(
-                            future: getName,
-                            builder: (context, snapshot) {
-                              if (snapshot.hasData) {
-                                return Text(
-                                  snapshot.data?.data()?['specialist'],
-                                  style: const TextStyle(color: Colors.white),
-                                );
-                              }
+                          // FutureBuilder(
+                          //   future: getName,
+                          //   builder: (context, snapshot) {
+                          //     if (snapshot.hasData) {
+                          //       return Text(
+                          //         snapshot.data?.data()?['speciality'],
+                          //         style: const TextStyle(color: Colors.white),
+                          //       );
+                          //     }
 
-                              return Container();
-                            },
-                          ),
+                          //     return Container();
+                          //   },
+                          // ),
                           // Text(
                           //   widget.specialist,
                           //   style: subtitleStyle,

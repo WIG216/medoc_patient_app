@@ -60,6 +60,10 @@ class AuthController extends GetxController {
     _authRepository.signInWithPhone(context, phoneNumber);
   }
 
+  void signInWithEmailAndPassword({required String email, required String password}) {
+    _authRepository.sigInWithEmailAndPassword(email:email, password:password);
+  }
+
   void registerWithEmailAndPassword({
     required String displayName,
     required String email,
