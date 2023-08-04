@@ -45,7 +45,6 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -90,11 +89,11 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             10.height,
 
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12.0),
-              child: Container(
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 12.0),
+              child: SizedBox(
                 height: 85,
-                child: const CategoryIcons(),
+                child: CategoryIcons(),
               ),
             ),
             8.height,
@@ -115,42 +114,46 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             SizedBox(
               height: 150,
-              child: Obx(
-                () {
-                  if (_bookingController.upComing.isEmpty) {
-                    return Center(
-                      child: _buildShimmerList(),
-                    );
-                  } else {
-                    final List<Appointment> upcomingAppointments =
-                        _bookingController.upComing;
+              child: Builder(
+                builder: (context) {
+                  final List<Appointment> upcomingAppointments =
+                      _bookingController.upComing;
 
-                    return SizedBox(
-                      // height: 120,
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: upcomingAppointments.length,
-                          itemBuilder: (context, index) {
-                            final Appointment appointment =
-                                upcomingAppointments[index];
-
-                            return SizedBox(
-                              width: MediaQuery.of(context).size.width - 20,
-                              child: AppointmentCard(
-                                onTap: () => Get.back(),
-                                appointmentDate: DateFormat('E d MMMM yy')
-                                    .format(appointment.selectedDate!),
-                                appointmentTime: appointment.time,
-                                doctorName: appointment.doctorId,
-                              ),
-                            );
-                          },
-                        ),
+                  if (upcomingAppointments.isEmpty) {
+                    return const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 12),
+                      child: NoDataFound(
+                        width: double.infinity,
+                        height: 80,
                       ),
                     );
                   }
+
+                  return SizedBox(
+                    // height: 120,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: upcomingAppointments.length,
+                        itemBuilder: (context, index) {
+                          final Appointment appointment =
+                              upcomingAppointments[index];
+
+                          return SizedBox(
+                            width: MediaQuery.of(context).size.width - 20,
+                            child: AppointmentCard(
+                              onTap: () => Get.back(),
+                              appointmentDate: DateFormat('E d MMMM yy')
+                                  .format(appointment.selectedDate!),
+                              appointmentTime: appointment.time,
+                              doctorName: appointment.doctorId,
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  );
                 },
               ),
             ),
@@ -223,6 +226,58 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class NoDataFound extends StatelessWidget {
+  const NoDataFound({
+    super.key,
+    this.text = "No Appointements Found for now",
+    this.svgAssetUrl,
+    this.width,
+    this.height,
+    this.noBorder = false,
+  });
+
+  final String text;
+  final double? width, height;
+  final String? svgAssetUrl;
+  final bool noBorder;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: height ?? 280,
+      width: width ?? 240,
+      decoration: BoxDecoration(
+        border: noBorder
+            ? Border.all(
+                width: 0,
+                color: Colors.transparent,
+              )
+            : Border.all(
+                width: .8,
+                color: Colors.black.withOpacity(0.1),
+              ),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+           const Icon(
+            Icons.emergency,
+            size: 52,
+            color: primaryColor,
+          ),
+          18.height,
+          Text(
+            text,
+            style: const TextStyle(fontSize: 14, color: Colors.black),
+            textAlign: TextAlign.center,
+          )
+        ],
       ),
     );
   }
